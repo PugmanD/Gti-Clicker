@@ -2,16 +2,21 @@
 <html>
     <head>
         <style>
-            .car{
+            .center{
                 text-align: center;
+            }
+            .image{
                 cursor: pointer;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
             }
             .potato{
                 position: absolute;
                 top: 100px;
                 left: 0;
                 z-index: -1;
-                animation-duration: 4s;
+                animation-duration: 10s;
                 animation-name: potato;
                 animation-iteration-count: infinite;
             }
@@ -20,34 +25,50 @@
                 left: -50px;
                 }
                 50%{top: 100px;
-                left: 2000px;
+                left: calc(110%);
                 transform: rotateZ(360deg);
                 }
                 100%{top: 100px;
-                left: -300px;
+                left: -175px;
                 transform: rotateZ(-360deg);
                 }
             }
         </style>
     </head>
     <body>
-        <div class="car">
-            <img src="../Images/Golf Gti.png" width="400" onclick="add()">
-            <h3 id="clicks">0</h3>
+        <img src="../Images/Golf Gti.png" width="400" onclick="add()" class="image">
+        <div>
+            <img src="../Images/potato.png" width="175" id="pot" class="potato" onclick="sone()">
         </div>
-        <div class="potato">
-            <img src="../Images/potato.png" width="175">
+        <div class="center">
+            <h3 id="clicks">0</h3>
+            <button onclick="save()">
+                Save
+            </button>
+            <button onclick="load()">
+                Load
+            </button>
         </div>
         <script>
             var clicks = 0;
+            function save(){
+                window.localStorage.setItem("numberSave", clicks);
+            }
+            function load(){
+                clicks = parseInt(window.localStorage.getItem("numberSave"));
+            }
             function add(){
-                clicks = clicks + 1;
+                clicks = clicks + 1
                 document.getElementById("clicks").innerHTML = clicks;
             }
             function update(){
                 document.getElementById("clicks").innerHTML = clicks;
             }
-            setInterval(update, 1)
+            function sone(){
+                document.getElementById("pot").src = "../Images/corn.png";
+                clicks = clicks + 100;
+            }
+            setInterval(update, 1);
         </script>
     </body>
 </html>
