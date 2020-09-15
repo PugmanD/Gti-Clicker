@@ -40,9 +40,9 @@
         </style>
     </head>
     <body>
-        <img src="../Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
+        <img src="Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
         <div>
-            <img src="../Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
+            <img src="Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
         </div>
         <div class="center">
             <h3 id="clicks">0</h3>
@@ -72,13 +72,13 @@
             function sone(){
                 tuberClicks = tuberClicks + 1;
                 if(tuberClicks == 1){
-                    document.getElementById("pot").src = "../Images/corn.png";
+                    document.getElementById("pot").src = "Images/corn.png";
                     document.getElementById("pot").style.animationDuration = "7.5s";
                     carClicks = carClicks + 100;
                     document.getElementById("pot").pause();
                 }
                 if(tuberClicks == 2){
-                    document.getElementById("pot").src = "../Images/Beats.png";
+                    document.getElementById("pot").src = "Images/Beats.png";
                     document.getElementById("pot").style.animationDuration = "5s";
                     document.getElementById("pot").style.width = "250px";
                     carClicks = carClicks + 125;
