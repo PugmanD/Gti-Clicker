@@ -2,6 +2,10 @@
 <html>
     <head>
         <style>
+            #body{
+                animation-duration: 1.5s;
+                animation-iteration-count: 1;
+            }
             ::selection{
                 color: none;
                 background: none;
@@ -37,9 +41,13 @@
                 transform: rotateZ(-360deg);
                 }
             }
+            @keyframes fruitMania{
+                to{background-color: #a138d6;}
+                from{background-color: white;}
+            }
         </style>
     </head>
-    <body>
+    <body id="body">
         <img src="Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
         <div>
             <img src="Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
@@ -75,7 +83,6 @@
                     document.getElementById("pot").src = "Images/corn.png";
                     document.getElementById("pot").style.animationDuration = "7.5s";
                     carClicks = carClicks + 100;
-                    document.getElementById("pot").pause();
                 }
                 if(tuberClicks == 2){
                     document.getElementById("pot").src = "Images/Beats.png";
@@ -86,6 +93,18 @@
                 if(tuberClicks == 3){
                     carClicks = carClicks + 150;
                 }
+                if(tuberClicks == 4){
+                    fruitMania()
+                }
+            }
+            function fruitMania(){
+                turnPurple()
+                setTimeout(turnPurple, 1500)
+                document.getElementById("body").style.animationName = "fruitMania";
+                document.getElementById("pot").style.display = "none";
+            }
+            function turnPurple(){
+                document.getElementById("body").style.backgroundColor = "#a138d6";
             }
             setInterval(update, 1);
         </script>
