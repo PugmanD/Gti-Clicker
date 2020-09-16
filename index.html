@@ -2,6 +2,12 @@
 <html>
     <head>
         <style>
+            .button{
+                padding: 25px 60px;
+                background-color: green;
+                color: white;
+                border: none;
+            }
             #body{
                 animation-duration: 1.5s;
                 animation-iteration-count: 1;
@@ -60,29 +66,30 @@
             }
         </style>
     </head>
-    <body id="body">
+    <body id="body" onload="load()">
         <img src="Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
         <div>
             <img src="Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
         </div>
         <div class="center">
+            <button onclick="reset()" class="button">Restart Game</button>
             <h3 id="clicks">0</h3>
-            <button onclick="save()">
-                Save
-            </button>
-            <button onclick="load()">
-                Load
-            </button>
             <h2 id="fruit"></h2>
         </div>
         <script>
             var idFruit = document.getElementById("fruit");
             var carClicks = 0;
             var tuberClicks = 0;
+            setInterval(save, 10000);
             function save(){
                 window.localStorage.setItem("numberSave", carClicks);
+                console.log("Game Saved!");
             }
             function load(){
+                carClicks = parseInt(window.localStorage.getItem("numberSave"));
+            }
+            function reset(){
+                window.localStorage.setItem("numberSave", 0);
                 carClicks = parseInt(window.localStorage.getItem("numberSave"));
             }
             function add(){
