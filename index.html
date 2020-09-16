@@ -2,6 +2,12 @@
 <html>
     <head>
         <style>
+            #fruit1{
+                position: absolute;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+                animation-name: fruit1;
+            }
             .button{
                 padding: 25px 60px;
                 background-color: green;
@@ -65,13 +71,24 @@
                 90%{color: yellow;}
                 100%{color: tomato; opacity: 0;}
             }
+            @keyframes fruit1{
+                0%{left: -100px;
+                }
+                50%{left: calc(90%);
+                transform: rotateZ(360deg);
+                }
+                100%{left: -100px;
+                transform: rotateZ(-360deg);
+                }
+            }
         </style>
     </head>
     <body id="body" onload="load()">
-        <img src="Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
+        <img src="../Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
         <div>
-            <img src="Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
+            <img src="../Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
         </div>
+        <img src="../Images/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
         <div class="center">
             <button onclick="reset()" class="button">Restart Game</button>
             <h3 id="clicks">0</h3>
@@ -81,7 +98,10 @@
             var idFruit = document.getElementById("fruit");
             var carClicks = 0;
             var tuberClicks = 0;
+            var fruit1 = Math.floor(Math.random() * 1025)
+            var fruit1ClckTimes = 0;
             setInterval(save, 10000);
+            document.getElementById("fruit1").style.display = "none";
             function save(){
                 window.localStorage.setItem("numberSave", carClicks);
                 console.log("Game Saved!");
@@ -103,21 +123,20 @@
             function sone(){
                 tuberClicks = tuberClicks + 1;
                 if(tuberClicks == 1){
-                    document.getElementById("pot").src = "Images/corn.png";
+                    document.getElementById("pot").src = "../Images/corn.png";
                     document.getElementById("pot").style.animationDuration = "7.5s";
                     carClicks = carClicks + 100;
                 }
                 if(tuberClicks == 2){
-                    document.getElementById("pot").src = "Images/Beats.png";
+                    document.getElementById("pot").src = "../Images/Beats.png";
                     document.getElementById("pot").style.animationDuration = "5s";
                     document.getElementById("pot").style.width = "250px";
                     carClicks = carClicks + 125;
                 }
                 if(tuberClicks == 3){
                     carClicks = carClicks + 150;
-                }
-                if(tuberClicks == 4){
                     fruitMania()
+                    movefruit1()
                 }
             }
             function fruitMania(){
@@ -136,6 +155,21 @@
             }
             function turnPurple(){
                 document.getElementById("body").style.backgroundColor = "#a138d6";
+            }
+            function movefruit1(){
+                updateFruit1()
+                fruit1ClckTimes = fruit1ClckTimes + 1;
+                carClicks = carClicks + 15;
+                if (fruit1ClckTimes < 6){
+                    document.getElementById("fruit1").style.display = "block";
+                    document.getElementById("fruit1").style.top = fruit1 + "px";
+                    document.getElementById("fruit1").style.animationName = "fruit1";
+                }else{
+                    document.getElementById("fruit1").style.display = "none";
+                }
+            }
+            function updateFruit1(){
+                fruit1 = Math.floor(Math.random() * 1025);
             }
             setInterval(update, 1);
         </script>
