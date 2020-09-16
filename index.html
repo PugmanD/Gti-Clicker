@@ -45,6 +45,19 @@
                 to{background-color: #a138d6;}
                 from{background-color: white;}
             }
+            @keyframes fruitText{
+                0%{color: tomato; opacity: 1;}
+                10%{color: yellow;}
+                20%{color: tomato;}
+                30%{color: yellow;}
+                40%{color: tomato;}
+                50%{color: yellow;}
+                60%{color: tomato;}
+                70%{color: yellow;}
+                80%{color: tomato;}
+                90%{color: yellow;}
+                100%{color: tomato; opacity: 0;}
+            }
         </style>
     </head>
     <body id="body">
@@ -60,8 +73,10 @@
             <button onclick="load()">
                 Load
             </button>
+            <h2 id="fruit"></h2>
         </div>
         <script>
+            var idFruit = document.getElementById("fruit");
             var carClicks = 0;
             var tuberClicks = 0;
             function save(){
@@ -98,10 +113,18 @@
                 }
             }
             function fruitMania(){
-                turnPurple()
-                setTimeout(turnPurple, 1500)
+                turnPurple();
+                setTimeout(turnPurple, 1500);
                 document.getElementById("body").style.animationName = "fruitMania";
                 document.getElementById("pot").style.display = "none";
+                idFruit.innerHTML = "Fruit Mania!";
+                idFruit.style.fontSize = "100px";
+                idFruit.style.animationName = "fruitText";
+                idFruit.style.animationDuration = "7s";
+                setTimeout(hideFruit, 7000);
+            }
+            function hideFruit(){
+                idFruit.style.display = "none"
             }
             function turnPurple(){
                 document.getElementById("body").style.backgroundColor = "#a138d6";
