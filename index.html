@@ -2,6 +2,12 @@
 <html>
     <head>
         <style>
+            #fruit2{
+                position: relative;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+                animation-name: fruit1;
+            }
             #fruit1{
                 position: absolute;
                 animation-duration: 10s;
@@ -18,6 +24,7 @@
             #body{
                 animation-duration: 1.5s;
                 animation-iteration-count: 1;
+                overflow: hidden;
             }
             ::selection{
                 color: none;
@@ -43,14 +50,14 @@
             }
             @keyframes potato{
                 0%{top: 100px;
-                left: -50px;
+                left: calc(-10%);
                 }
                 50%{top: 100px;
                 left: calc(110%);
                 transform: rotateZ(360deg);
                 }
                 100%{top: 100px;
-                left: -175px;
+                left: calc(-10%);
                 transform: rotateZ(-360deg);
                 }
             }
@@ -84,11 +91,12 @@
         </style>
     </head>
     <body id="body" onload="load()">
-        <img src="Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
+        <img src="../Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
         <div>
-            <img src="Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
+            <img src="../Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
         </div>
-        <img src="Images/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
+        <img src="../Images/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
+        <img src="../Images/watermelon.png" width="245px" id="fruit2" onclick="movefruit2()" draggable="false">
         <div class="center">
             <button onclick="reset()" class="button">Restart Game</button>
             <h3 id="clicks">0</h3>
@@ -98,10 +106,13 @@
             var idFruit = document.getElementById("fruit");
             var carClicks = 0;
             var tuberClicks = 0;
-            var fruit1 = Math.floor(Math.random() * 1025)
+            var fruit1 = Math.floor(Math.random() * 1025);
             var fruit1ClckTimes = 0;
+            var fruit2 = Math.floor(Math.random() * 1025);
+            var fruit2ClckTimes = 0;
             setInterval(save, 10000);
             document.getElementById("fruit1").style.display = "none";
+            document.getElementById("fruit2").style.display = "none";
             function save(){
                 window.localStorage.setItem("numberSave", carClicks);
                 console.log("Game Saved!");
@@ -123,12 +134,12 @@
             function sone(){
                 tuberClicks = tuberClicks + 1;
                 if(tuberClicks == 1){
-                    document.getElementById("pot").src = "Images/corn.png";
+                    document.getElementById("pot").src = "../Images/corn.png";
                     document.getElementById("pot").style.animationDuration = "7.5s";
                     carClicks = carClicks + 100;
                 }
                 if(tuberClicks == 2){
-                    document.getElementById("pot").src = "Images/Beats.png";
+                    document.getElementById("pot").src = "../Images/Beats.png";
                     document.getElementById("pot").style.animationDuration = "5s";
                     document.getElementById("pot").style.width = "250px";
                     carClicks = carClicks + 125;
@@ -136,7 +147,8 @@
                 if(tuberClicks == 3){
                     carClicks = carClicks + 150;
                     fruitMania()
-                    movefruit1()
+                    document.getElementById("fruit1").style.display = "block";
+                    document.getElementById("fruit2").style.display = "block";
                 }
             }
             function fruitMania(){
@@ -147,6 +159,7 @@
                 idFruit.innerHTML = "Fruit Mania!";
                 idFruit.style.fontSize = "100px";
                 idFruit.style.animationName = "fruitText";
+                idFruit.style.zIndex = "-2";
                 idFruit.style.animationDuration = "7s";
                 setTimeout(hideFruit, 7000);
             }
@@ -157,19 +170,30 @@
                 document.getElementById("body").style.backgroundColor = "#a138d6";
             }
             function movefruit1(){
-                updateFruit1()
+                updateFruit()
                 fruit1ClckTimes = fruit1ClckTimes + 1;
                 carClicks = carClicks + 15;
                 if (fruit1ClckTimes < 6){
-                    document.getElementById("fruit1").style.display = "block";
                     document.getElementById("fruit1").style.top = fruit1 + "px";
                     document.getElementById("fruit1").style.animationName = "fruit1";
                 }else{
                     document.getElementById("fruit1").style.display = "none";
                 }
             }
-            function updateFruit1(){
+            function movefruit2(){
+                updateFruit()
+                fruit2ClckTimes = fruit2ClckTimes + 1;
+                carClicks = carClicks + 20;
+                if (fruit2ClckTimes < 6){
+                    document.getElementById("fruit2").style.top = fruit2 + "px";
+                    document.getElementById("fruit2").style.animationName = "fruit1";
+                }else{
+                    document.getElementById("fruit2").style.display = "none";
+                }
+            }
+            function updateFruit(){
                 fruit1 = Math.floor(Math.random() * 1025);
+                fruit2 = Math.floor(Math.random() * 1025);
             }
             setInterval(update, 1);
         </script>
