@@ -43,12 +43,14 @@
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
+                z-index: 100;
+                position: relative;
             }
             .potato{
                 position: absolute;
                 top: 100px;
                 left: 0;
-                z-index: -1;
+                z-index: 99;
                 animation-duration: 10s;
                 animation-name: potato;
                 animation-iteration-count: infinite;
@@ -96,20 +98,21 @@
         </style>
     </head>
     <body id="body" onload="load()">
-        <img src="../Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
-        <audio src="../Audio/Animal crossing.mp3" id="audio"></audio>
+        <img src="Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
+        <audio src="Audio/Animal crossing.mp3" id="audio"></audio>
         <div>
             <img src="../Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
         </div>
-        <img src="../Images/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
-        <img src="../Images/watermelon.png" width="245px" id="fruit2" onclick="movefruit2()" draggable="false">
+        <img src="Images/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
+        <img src="Images/watermelon.png" width="245px" id="fruit2" onclick="movefruit2()" draggable="false">
         <div class="center">
             <button onclick="reset()" class="button">Restart Game</button>
-            <button onclick="playAudio()" class="button">Music On/Off</button>
+            <button onclick="playAudio()" class="button" id="music">Music On</button>
             <h3 id="clicks">0</h3>
         </div>
         <h2 id="fruit"></h2>
         <script>
+            var music = 0;
             var idFruit = document.getElementById("fruit");
             var carClicks = 0;
             var tuberClicks = 0;
@@ -129,7 +132,15 @@
             }
             function playAudio(){
                 var audio = document.getElementById("audio");
-                audio.play();
+                if(music == 0){
+                    music = music + 1;
+                    audio.play();
+                    document.getElementById("music").innerHTML = "Music Off";
+                }else{
+                    music = 0;
+                    audio.pause();
+                    document.getElementById("music").innerHTML = "Music On";
+                }
             }
             function reset(){
                 window.localStorage.setItem("numberSave", 0);
@@ -145,12 +156,12 @@
             function sone(){
                 tuberClicks = tuberClicks + 1;
                 if(tuberClicks == 1){
-                    document.getElementById("pot").src = "../Images/corn.png";
+                    document.getElementById("pot").src = "Images/corn.png";
                     document.getElementById("pot").style.animationDuration = "7.5s";
                     carClicks = carClicks + 100;
                 }
                 if(tuberClicks == 2){
-                    document.getElementById("pot").src = "../Images/Beats.png";
+                    document.getElementById("pot").src = "Images/Beats.png";
                     document.getElementById("pot").style.animationDuration = "5s";
                     document.getElementById("pot").style.width = "250px";
                     carClicks = carClicks + 125;
