@@ -93,10 +93,10 @@
     <body id="body" onload="load()">
         <img src="../Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
         <div>
-            <img src="../Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
+            <img src="Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
         </div>
-        <img src="../Images/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
-        <img src="../Images/watermelon.png" width="245px" id="fruit2" onclick="movefruit2()" draggable="false">
+        <img src="Images/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
+        <img src="Images/watermelon.png" width="245px" id="fruit2" onclick="movefruit2()" draggable="false">
         <div class="center">
             <button onclick="reset()" class="button">Restart Game</button>
             <h3 id="clicks">0</h3>
@@ -134,12 +134,12 @@
             function sone(){
                 tuberClicks = tuberClicks + 1;
                 if(tuberClicks == 1){
-                    document.getElementById("pot").src = "../Images/corn.png";
+                    document.getElementById("pot").src = "Images/corn.png";
                     document.getElementById("pot").style.animationDuration = "7.5s";
                     carClicks = carClicks + 100;
                 }
                 if(tuberClicks == 2){
-                    document.getElementById("pot").src = "../Images/Beats.png";
+                    document.getElementById("pot").src = "Images/Beats.png";
                     document.getElementById("pot").style.animationDuration = "5s";
                     document.getElementById("pot").style.width = "250px";
                     carClicks = carClicks + 125;
