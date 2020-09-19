@@ -3,7 +3,7 @@
     <head>
         <style>
             #fruit2{
-                position: relative;
+                position: absolute;
                 animation-duration: 10s;
                 animation-iteration-count: infinite;
                 animation-name: fruit1;
@@ -13,6 +13,10 @@
                 animation-duration: 10s;
                 animation-iteration-count: infinite;
                 animation-name: fruit1;
+            }
+            #fruit{
+                text-align: center;
+                z-index: -1;
             }
             .button{
                 padding: 25px 60px;
@@ -32,6 +36,7 @@
             }
             .center{
                 text-align: center;
+                z-index: -1;
             }
             .image{
                 cursor: pointer;
@@ -91,7 +96,8 @@
         </style>
     </head>
     <body id="body" onload="load()">
-        <img src="../Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
+        <img srcImages/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
+        <audio src="Audio/Click sound.mp3" id="audio"></audio>
         <div>
             <img src="Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
         </div>
@@ -100,8 +106,8 @@
         <div class="center">
             <button onclick="reset()" class="button">Restart Game</button>
             <h3 id="clicks">0</h3>
-            <h2 id="fruit"></h2>
         </div>
+        <h2 id="fruit"></h2>
         <script>
             var idFruit = document.getElementById("fruit");
             var carClicks = 0;
@@ -133,6 +139,7 @@
             }
             function sone(){
                 tuberClicks = tuberClicks + 1;
+                playAudio();
                 if(tuberClicks == 1){
                     document.getElementById("pot").src = "Images/corn.png";
                     document.getElementById("pot").style.animationDuration = "7.5s";
@@ -150,6 +157,10 @@
                     document.getElementById("fruit1").style.display = "block";
                     document.getElementById("fruit2").style.display = "block";
                 }
+            }
+            function playAudio(){
+                var audio = document.getElementById("audio");
+                audio.play();
             }
             function fruitMania(){
                 turnPurple();
@@ -173,6 +184,7 @@
                 updateFruit()
                 fruit1ClckTimes = fruit1ClckTimes + 1;
                 carClicks = carClicks + 15;
+                document.getElementById("fruit1").style.top = Math.floor(Math.random() * 1025);
                 if (fruit1ClckTimes < 6){
                     document.getElementById("fruit1").style.top = fruit1 + "px";
                     document.getElementById("fruit1").style.animationName = "fruit1";
@@ -184,6 +196,7 @@
                 updateFruit()
                 fruit2ClckTimes = fruit2ClckTimes + 1;
                 carClicks = carClicks + 20;
+                document.getElementById("fruit2").style.top = Math.floor(Math.random() * 1025);
                 if (fruit2ClckTimes < 6){
                     document.getElementById("fruit2").style.top = fruit2 + "px";
                     document.getElementById("fruit2").style.animationName = "fruit1";
