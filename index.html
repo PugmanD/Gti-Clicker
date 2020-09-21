@@ -2,6 +2,24 @@
 <html>
     <head>
         <style>
+            #fruit5{
+                position: absolute;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+                animation-name: fruit1;
+            }
+            #fruit4{
+                position: absolute;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+                animation-name: fruit1;
+            }
+            #fruit3{
+                position: absolute;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+                animation-name: fruit1;
+            }
             #fruit2{
                 position: absolute;
                 animation-duration: 10s;
@@ -16,7 +34,8 @@
             }
             #fruit{
                 text-align: center;
-                z-index: -1;
+                position: relative;
+                z-index: -100;
             }
             .button{
                 padding: 25px 60px;
@@ -105,6 +124,9 @@
         </div>
         <img src="Images/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
         <img src="Images/watermelon.png" width="245px" id="fruit2" onclick="movefruit2()" draggable="false">
+        <img src="Images/Blackberry.png" width="245px" id="fruit3" onclick="movefruit3()" draggable="false">
+        <img src="Images/Bananas.png" width="245px" id="fruit4" onclick="movefruit4()" draggable="false">
+        <img src="Images/Blueberry.png" width="150px" id="fruit5" onclick="movefruit5()" draggable="false">
         <div class="center">
             <button onclick="reset()" class="button">Restart Game</button>
             <button onclick="playAudio()" class="button" id="music">Music On</button>
@@ -120,9 +142,18 @@
             var fruit1ClckTimes = 0;
             var fruit2 = Math.floor(Math.random() * 1025);
             var fruit2ClckTimes = 0;
+            var fruit3 = Math.floor(Math.random() * 1025);
+            var fruit3ClckTimes = 0;
+            var fruit4 = Math.floor(Math.random() * 1025);
+            var fruit4ClckTimes = 0;
+            var fruit5 = Math.floor(Math.random() * 1025);
+            var fruit5ClckTimes = 0;
             setInterval(save, 10000);
             document.getElementById("fruit1").style.display = "none";
             document.getElementById("fruit2").style.display = "none";
+            document.getElementById("fruit3").style.display = "none";
+            document.getElementById("fruit4").style.display = "none";
+            document.getElementById("fruit5").style.display = "none";
             function save(){
                 window.localStorage.setItem("numberSave", carClicks);
                 console.log("Game Saved!");
@@ -183,6 +214,8 @@
                 idFruit.style.animationName = "fruitText";
                 idFruit.style.zIndex = "-2";
                 idFruit.style.animationDuration = "7s";
+                document.getElementById("fruit1").style.top = Math.floor(Math.random() * 1025); + "px";
+                document.getElementById("fruit2").style.top = Math.floor(Math.random() * 1025) + "px";
                 setTimeout(hideFruit, 7000);
             }
             function hideFruit(){
@@ -198,9 +231,10 @@
                 document.getElementById("fruit1").style.top = Math.floor(Math.random() * 1025);
                 if (fruit1ClckTimes < 6){
                     document.getElementById("fruit1").style.top = fruit1 + "px";
-                    document.getElementById("fruit1").style.animationName = "fruit1";
                 }else{
                     document.getElementById("fruit1").style.display = "none";
+                    document.getElementById("fruit4").style.display = "block";
+                    movefruit4();
                 }
             }
             function movefruit2(){
@@ -210,14 +244,49 @@
                 document.getElementById("fruit2").style.top = Math.floor(Math.random() * 1025);
                 if (fruit2ClckTimes < 6){
                     document.getElementById("fruit2").style.top = fruit2 + "px";
-                    document.getElementById("fruit2").style.animationName = "fruit1";
                 }else{
                     document.getElementById("fruit2").style.display = "none";
+                    document.getElementById("fruit3").style.display = "block";
+                    movefruit3();
+                }
+            }
+            function movefruit3(){
+                updateFruit()
+                fruit3ClckTimes = fruit3ClckTimes + 1;
+                carClicks = carClicks + 25;
+                if (fruit3ClckTimes < 5){
+                    document.getElementById("fruit3").style.top = fruit3 + "px";
+                }else{
+                    document.getElementById("fruit3").style.display = "none";
+                }
+            }
+            function movefruit4(){
+                updateFruit()
+                fruit4ClckTimes = fruit4ClckTimes + 1;
+                carClicks = carClicks + 30;
+                if (fruit4ClckTimes < 4){
+                    document.getElementById("fruit4").style.top = fruit4 + "px";
+                }else{
+                    document.getElementById("fruit4").style.display = "none";
+                    document.getElementById("fruit5").style.display = "block";
+                }
+            }
+            function movefruit5(){
+                updateFruit()
+                fruit5ClckTimes = fruit5ClckTimes + 1;
+                carClicks = carClicks + 45;
+                if (fruit5ClckTimes < 3){
+                    document.getElementById("fruit5").style.top = fruit5 + "px";
+                }else{
+                    document.getElementById("fruit5").style.display = "none";
                 }
             }
             function updateFruit(){
                 fruit1 = Math.floor(Math.random() * 1025);
                 fruit2 = Math.floor(Math.random() * 1025);
+                fruit3 = Math.floor(Math.random() * 1025);
+                fruit4 = Math.floor(Math.random() * 1025);
+                fruit5 = Math.floor(Math.random() * 1025);
             }
             setInterval(update, 1);
         </script>
