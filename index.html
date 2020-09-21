@@ -2,6 +2,12 @@
 <html>
     <head>
         <style>
+            #fruit6{
+                position: absolute;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+                animation-name: fruit1;
+            }
             #fruit5{
                 position: absolute;
                 animation-duration: 10s;
@@ -127,6 +133,7 @@
         <img src="Images/Blackberry.png" width="245px" id="fruit3" onclick="movefruit3()" draggable="false">
         <img src="Images/Bananas.png" width="245px" id="fruit4" onclick="movefruit4()" draggable="false">
         <img src="Images/Blueberry.png" width="150px" id="fruit5" onclick="movefruit5()" draggable="false">
+        <img src="Images/Tomato.png" width="190px" id="fruit6" onclick="movefruit6()" draggable="false">
         <div class="center">
             <button onclick="reset()" class="button">Restart Game</button>
             <button onclick="playAudio()" class="button" id="music">Music On</button>
@@ -148,12 +155,15 @@
             var fruit4ClckTimes = 0;
             var fruit5 = Math.floor(Math.random() * 1025);
             var fruit5ClckTimes = 0;
+            var fruit6 = Math.floor(Math.random() * 1025);
+            var fruit6ClckTimes = 0;
             setInterval(save, 10000);
             document.getElementById("fruit1").style.display = "none";
             document.getElementById("fruit2").style.display = "none";
             document.getElementById("fruit3").style.display = "none";
             document.getElementById("fruit4").style.display = "none";
             document.getElementById("fruit5").style.display = "none";
+            document.getElementById("fruit6").style.display = "none";
             function save(){
                 window.localStorage.setItem("numberSave", carClicks);
                 console.log("Game Saved!");
@@ -187,7 +197,7 @@
             function sone(){
                 tuberClicks = tuberClicks + 1;
                 if(tuberClicks == 1){
-                    document.getElementById("pot").src = "Images/corn.png";
+                    document.getElementById("pot").src="Images/corn.png"
                     document.getElementById("pot").style.animationDuration = "7.5s";
                     carClicks = carClicks + 100;
                 }
@@ -247,7 +257,6 @@
                 }else{
                     document.getElementById("fruit2").style.display = "none";
                     document.getElementById("fruit3").style.display = "block";
-                    movefruit3();
                 }
             }
             function movefruit3(){
@@ -258,6 +267,7 @@
                     document.getElementById("fruit3").style.top = fruit3 + "px";
                 }else{
                     document.getElementById("fruit3").style.display = "none";
+                    document.getElementById("fruit6").style.display = "block";
                 }
             }
             function movefruit4(){
@@ -281,12 +291,23 @@
                     document.getElementById("fruit5").style.display = "none";
                 }
             }
+            function movefruit6(){
+                updateFruit()
+                fruit6ClckTimes = fruit6ClckTimes + 1;
+                carClicks = carClicks + 45;
+                if (fruit6ClckTimes < 2){
+                    document.getElementById("fruit6").style.top = fruit6 + "px";
+                }else{
+                    document.getElementById("fruit6").style.display = "none";
+                }
+            }
             function updateFruit(){
                 fruit1 = Math.floor(Math.random() * 1025);
                 fruit2 = Math.floor(Math.random() * 1025);
                 fruit3 = Math.floor(Math.random() * 1025);
                 fruit4 = Math.floor(Math.random() * 1025);
                 fruit5 = Math.floor(Math.random() * 1025);
+                fruit6 = Math.floor(Math.random() * 1025);
             }
             setInterval(update, 1);
         </script>
