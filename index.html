@@ -2,6 +2,12 @@
 <html>
     <head>
         <style>
+            #fruit6{
+                position: absolute;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+                animation-name: fruit1;
+            }
             #fruit5{
                 position: absolute;
                 animation-duration: 10s;
@@ -37,7 +43,14 @@
                 position: relative;
                 z-index: -100;
             }
-            .button{
+            #button{
+                padding: 25px 60px;
+                background-color: green;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            #music{
                 padding: 25px 60px;
                 background-color: green;
                 color: white;
@@ -57,13 +70,10 @@
                 text-align: center;
                 z-index: -1;
             }
-            .image{
-                cursor: pointer;
+            #image{
                 display: block;
-                margin-left: auto;
-                margin-right: auto;
+                cursor: pointer;
                 z-index: 100;
-                position: relative;
             }
             .potato{
                 position: absolute;
@@ -117,19 +127,22 @@
         </style>
     </head>
     <body id="body" onload="load()">
-        <img src="Images/Golf Gti.png" width="400" onclick="add()" class="image" draggable="false">
+        <img src="Images/Golf Gti.png" width="400" onclick="add()" id="image" draggable="false">
         <audio src="Audio/Animal crossing.mp3" id="audio"></audio>
+        <audio src="Audio/UH Oh.wav" id="uhoh"></audio>
         <div>
-            <img src="Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
+            <img src="../Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
         </div>
         <img src="Images/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
         <img src="Images/watermelon.png" width="245px" id="fruit2" onclick="movefruit2()" draggable="false">
         <img src="Images/Blackberry.png" width="245px" id="fruit3" onclick="movefruit3()" draggable="false">
         <img src="Images/Bananas.png" width="245px" id="fruit4" onclick="movefruit4()" draggable="false">
         <img src="Images/Blueberry.png" width="150px" id="fruit5" onclick="movefruit5()" draggable="false">
+        <img src="Images/Tomato.png" width="190px" id="fruit6" onclick="movefruit6()" draggable="false">
+        <img src="Images/PeachRemove.png" draggable="false" id="peachLeech">
         <div class="center">
-            <button onclick="reset()" class="button">Restart Game</button>
-            <button onclick="playAudio()" class="button" id="music">Music On</button>
+            <button onclick="reset()" id="button">Restart Game</button>
+            <button onclick="playAudio()" id="music">Music On</button>
             <h3 id="clicks">0</h3>
         </div>
         <h2 id="fruit"></h2>
@@ -148,12 +161,20 @@
             var fruit4ClckTimes = 0;
             var fruit5 = Math.floor(Math.random() * 1025);
             var fruit5ClckTimes = 0;
+            var fruit6 = Math.floor(Math.random() * 1025);
+            var fruit6ClckTimes = 0;
             setInterval(save, 10000);
             document.getElementById("fruit1").style.display = "none";
             document.getElementById("fruit2").style.display = "none";
             document.getElementById("fruit3").style.display = "none";
             document.getElementById("fruit4").style.display = "none";
             document.getElementById("fruit5").style.display = "none";
+            document.getElementById("fruit6").style.display = "none";
+            document.getElementById("peachLeech").style.display = "none";
+            document.getElementById("image").style.display = "block";
+            document.getElementById("image").style.position = "relative";
+            document.getElementById("image").style.marginLeft = "auto";
+            document.getElementById("image").style.marginRight = "auto";
             function save(){
                 window.localStorage.setItem("numberSave", carClicks);
                 console.log("Game Saved!");
@@ -183,6 +204,7 @@
             }
             function update(){
                 document.getElementById("clicks").innerHTML = carClicks;
+                carClicks = Math.round(carClicks);
             }
             function sone(){
                 tuberClicks = tuberClicks + 1;
@@ -214,11 +236,12 @@
                 idFruit.style.animationName = "fruitText";
                 idFruit.style.zIndex = "-2";
                 idFruit.style.animationDuration = "7s";
-                document.getElementById("fruit1").style.top = Math.floor(Math.random() * 1025); + "px";
+                document.getElementById("fruit1").style.top = Math.floor(Math.random() * 1025) + "px";
                 document.getElementById("fruit2").style.top = Math.floor(Math.random() * 1025) + "px";
-                setTimeout(hideFruit, 7000);
+                setTimeout(hideFruitText, 7000);
+                setTimeout(peachLeech, 20000);
             }
-            function hideFruit(){
+            function hideFruitText(){
                 idFruit.style.display = "none"
             }
             function turnPurple(){
@@ -247,7 +270,6 @@
                 }else{
                     document.getElementById("fruit2").style.display = "none";
                     document.getElementById("fruit3").style.display = "block";
-                    movefruit3();
                 }
             }
             function movefruit3(){
@@ -258,6 +280,7 @@
                     document.getElementById("fruit3").style.top = fruit3 + "px";
                 }else{
                     document.getElementById("fruit3").style.display = "none";
+                    document.getElementById("fruit6").style.display = "block";
                 }
             }
             function movefruit4(){
@@ -281,14 +304,39 @@
                     document.getElementById("fruit5").style.display = "none";
                 }
             }
+            function movefruit6(){
+                updateFruit()
+                fruit6ClckTimes = fruit6ClckTimes + 1;
+                carClicks = carClicks + 45;
+                if (fruit6ClckTimes < 2){
+                    document.getElementById("fruit6").style.top = fruit6 + "px";
+                }else{
+                    document.getElementById("fruit6").style.display = "none";
+                }
+            }
             function updateFruit(){
                 fruit1 = Math.floor(Math.random() * 1025);
                 fruit2 = Math.floor(Math.random() * 1025);
                 fruit3 = Math.floor(Math.random() * 1025);
                 fruit4 = Math.floor(Math.random() * 1025);
                 fruit5 = Math.floor(Math.random() * 1025);
+                fruit6 = Math.floor(Math.random() * 1025);
             }
-            setInterval(update, 1);
+            function peachLeech(){
+                document.getElementById("image").style.display = "none";
+                document.getElementById("fruit1").style.display = "none";
+                document.getElementById("fruit2").style.display = "none";
+                document.getElementById("fruit3").style.display = "none";
+                document.getElementById("fruit4").style.display = "none";
+                document.getElementById("fruit5").style.display = "none";
+                document.getElementById("fruit6").style.display = "none";
+                document.getElementById("button").style.display = "none";
+                document.getElementById("music").style.display = "none";
+                document.getElementById("clicks").style.display = "none";
+                document.getElementById("peachLeech").style.display = "block";
+                document.getElementById("uhoh").play();
+            }
+            setInterval(update, 0);
         </script>
     </body>
 </html>
