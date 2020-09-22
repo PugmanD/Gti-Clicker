@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="icon" href="Images/IconGolfGti.png">
         <style>
             #fruit6{
                 position: absolute;
@@ -124,6 +125,10 @@
                 transform: rotateZ(-360deg);
                 }
             }
+            @keyframes turnBlack{
+                to{background-color: black;}
+                from{background-color: #a138d6;}
+            }
         </style>
     </head>
     <body id="body" onload="load()">
@@ -195,8 +200,10 @@
                 }
             }
             function reset(){
-                window.localStorage.setItem("numberSave", 0);
-                carClicks = parseInt(window.localStorage.getItem("numberSave"));
+                if (confirm("Are you sure you want to reset score?")){
+                    window.localStorage.setItem("numberSave", 0);
+                    carClicks = parseInt(window.localStorage.getItem("numberSave"));
+                }
             }
             function add(){
                 carClicks = carClicks + 1
@@ -205,6 +212,7 @@
             function update(){
                 document.getElementById("clicks").innerHTML = carClicks;
                 carClicks = Math.round(carClicks);
+                document.title = "Gti Clicker: " + carClicks + " Clicks";
             }
             function sone(){
                 tuberClicks = tuberClicks + 1;
@@ -335,6 +343,15 @@
                 document.getElementById("clicks").style.display = "none";
                 document.getElementById("peachLeech").style.display = "block";
                 document.getElementById("uhoh").play();
+                document.getElementById("body").style.animation = "turnBlack 4s";
+                setTimeout(turnBlack, 4000);
+                setInterval(takeaway, 2000);
+            }
+            function turnBlack(){
+                document.getElementById("body").style.backgroundColor = "black";
+            }
+            function takeaway(){
+                carClicks = carClicks - carClicks * .05;
             }
             setInterval(update, 0);
         </script>
