@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="icon" href="Images/IconGolfGti.png">
+        <link rel="icon" hreImages/IconGolfGti.png">
         <style>
+            img{
+                cursor: pointer;
+            }
+            #peachLeech{
+                position: absolute;
+                animation-duration: 3s;
+            }
             #fruit6{
                 position: absolute;
                 animation-duration: 10s;
@@ -129,6 +136,10 @@
                 to{background-color: black;}
                 from{background-color: #a138d6;}
             }
+            @keyframes peachLeech{
+                to{width: 500px; height: 500px;}
+                from{width: 1000px; height: 1000px;}
+            }
         </style>
     </head>
     <body id="body" onload="load()">
@@ -144,7 +155,7 @@
         <img src="Images/Bananas.png" width="245px" id="fruit4" onclick="movefruit4()" draggable="false">
         <img src="Images/Blueberry.png" width="150px" id="fruit5" onclick="movefruit5()" draggable="false">
         <img src="Images/Tomato.png" width="190px" id="fruit6" onclick="movefruit6()" draggable="false">
-        <img src="Images/PeachRemove.png" draggable="false" id="peachLeech">
+        <img src="Images/PeachRemove.png" draggable="false" id="peachLeech" onclick="peachLeechAdd()">
         <div class="center">
             <button onclick="reset()" id="button">Restart Game</button>
             <button onclick="playAudio()" id="music">Music On</button>
@@ -168,6 +179,7 @@
             var fruit5ClckTimes = 0;
             var fruit6 = Math.floor(Math.random() * 1025);
             var fruit6ClckTimes = 0;
+            var peachLeechclicks = 0;
             setInterval(save, 10000);
             document.getElementById("fruit1").style.display = "none";
             document.getElementById("fruit2").style.display = "none";
@@ -247,7 +259,7 @@
                 document.getElementById("fruit1").style.top = Math.floor(Math.random() * 1025) + "px";
                 document.getElementById("fruit2").style.top = Math.floor(Math.random() * 1025) + "px";
                 setTimeout(hideFruitText, 7000);
-                setTimeout(peachLeech, 20000);
+                setTimeout(peachLeech, 15000);
             }
             function hideFruitText(){
                 idFruit.style.display = "none"
@@ -345,13 +357,31 @@
                 document.getElementById("uhoh").play();
                 document.getElementById("body").style.animation = "turnBlack 4s";
                 setTimeout(turnBlack, 4000);
-                setInterval(takeaway, 2000);
+                document.getElementById("peachLeech").style.left = Math.floor(Math.random() * 1335) + "px";
+                document.getElementById("peachLeech").style.top = Math.floor(Math.random() * 1000) + "px";
+                setTimeout(getSmaller, 2000);
             }
             function turnBlack(){
                 document.getElementById("body").style.backgroundColor = "black";
             }
             function takeaway(){
                 carClicks = carClicks - carClicks * .05;
+            }
+            function getSmaller(){
+                document.getElementById("peachLeech").style.animationName = "peachLeech";
+                document.getElementById("peachLeech").style.width = "500px";
+                setInterval(peachPosition, 5000);
+            }
+            function peachPosition(){
+                document.getElementById("peachLeech").style.top = Math.floor(Math.random() * 1000) + "px";
+                document.getElementById("peachLeech").style.left = Math.floor(Math.random() * 1335) + "px";
+            }
+            function peachLeechAdd(){
+                carClicks = carClicks - carClicks * .01;
+                if (peachLeechclicks == 100){
+                    document.getElementById("peachLeech").style.display = "none";
+                }
+                peachLeechclicks = peachLeechclicks + 1;
             }
             setInterval(update, 0);
         </script>
