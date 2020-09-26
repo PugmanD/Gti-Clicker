@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="icon" hreImages/IconGolfGti.png">
+        <link rel="icon" href="../Images/IconGolfGti.png">
         <style>
+            #dust{
+                color: white;
+            }
             img{
                 cursor: pointer;
             }
@@ -47,9 +50,7 @@
                 animation-name: fruit1;
             }
             #fruit{
-                text-align: center;
-                position: relative;
-                z-index: -100;
+                position: absolute;
             }
             #button{
                 padding: 25px 60px;
@@ -156,12 +157,14 @@
         <img src="Images/Blueberry.png" width="150px" id="fruit5" onclick="movefruit5()" draggable="false">
         <img src="Images/Tomato.png" width="190px" id="fruit6" onclick="movefruit6()" draggable="false">
         <img src="Images/PeachRemove.png" draggable="false" id="peachLeech" onclick="peachLeechAdd()">
+        <audio src="Audio/Dust in the wind.mp3" id="wind"></audio>
         <div class="center">
             <button onclick="reset()" id="button">Restart Game</button>
             <button onclick="playAudio()" id="music">Music On</button>
             <h3 id="clicks">0</h3>
+            <h1 id="dust">Were All Just Dust In The Wind, Dude.</h1>
+            <h2 id="fruit"></h2>
         </div>
-        <h2 id="fruit"></h2>
         <script>
             var music = 0;
             var idFruit = document.getElementById("fruit");
@@ -188,6 +191,7 @@
             document.getElementById("fruit5").style.display = "none";
             document.getElementById("fruit6").style.display = "none";
             document.getElementById("peachLeech").style.display = "none";
+            document.getElementById("dust").style.display = "none";
             document.getElementById("image").style.display = "block";
             document.getElementById("image").style.position = "relative";
             document.getElementById("image").style.marginLeft = "auto";
@@ -360,12 +364,34 @@
                 document.getElementById("peachLeech").style.left = Math.floor(Math.random() * 1335) + "px";
                 document.getElementById("peachLeech").style.top = Math.floor(Math.random() * 1000) + "px";
                 setTimeout(getSmaller, 2000);
+                var take = setInterval(function(){
+                    carClicks = carClicks - carClicks * .03;
+                }, 2000)
+                setInterval(function(){
+                    if (peachLeechclicks == 100){
+                        clearInterval(take);
+                    }
+                }, 0)
+                setTimeout(function(){
+                    if (peachLeechclicks < 100){
+                        endPeachLeech();
+                        clearInterval(take);
+                    }
+                }, 25000)
+            }
+            function endPeachLeech(){
+                if (peachLeechclicks >= 100){
+                    document.getElementById("peachLeech").style.display = "none";
+                    document.getElementById("image").style.display = "block";
+                }else{
+                    document.getElementById("dust").style.display = "block";
+                    document.getElementById("peachLeech").style.display = "none";
+                    document.getElementById("wind").play();
+                    document.getElementById("audio").pause();
+                }
             }
             function turnBlack(){
                 document.getElementById("body").style.backgroundColor = "black";
-            }
-            function takeaway(){
-                carClicks = carClicks - carClicks * .05;
             }
             function getSmaller(){
                 document.getElementById("peachLeech").style.animationName = "peachLeech";
@@ -377,11 +403,10 @@
                 document.getElementById("peachLeech").style.left = Math.floor(Math.random() * 1335) + "px";
             }
             function peachLeechAdd(){
-                carClicks = carClicks - carClicks * .01;
-                if (peachLeechclicks == 100){
+                peachLeechclicks = peachLeechclicks + 1;
+                if (peachLeechclicks >= 100){
                     document.getElementById("peachLeech").style.display = "none";
                 }
-                peachLeechclicks = peachLeechclicks + 1;
             }
             setInterval(update, 0);
         </script>
