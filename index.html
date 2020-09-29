@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="icon" href="Images/IconGolfGti.png">
+        <link rel="icon" hrefImages/IconGolfGti.png">
+        <meta name="veiwport" content="width=device-width, initial-scale=1.0">
         <style>
             #dust{
                 color: white;
@@ -50,7 +51,8 @@
                 animation-name: fruit1;
             }
             #fruit{
-                position: absolute;
+                position: relative;
+                text-align: center;
             }
             #button{
                 padding: 25px 60px;
@@ -65,6 +67,8 @@
                 color: white;
                 border: none;
                 cursor: pointer;
+                left: 50%;
+                transform: translate(50%);
             }
             #body{
                 animation-duration: 1.5s;
@@ -75,7 +79,7 @@
                 color: none;
                 background: none;
             }
-            .center{
+            #center{
                 text-align: center;
                 z-index: -1;
             }
@@ -141,6 +145,10 @@
                 to{width: 500px; height: 500px;}
                 from{width: 1000px; height: 1000px;}
             }
+            @keyframes turnNormal{
+                to{background-color: lightgreen;}
+                from{background-color: black;}
+            }
         </style>
     </head>
     <body id="body" onload="load()">
@@ -158,13 +166,14 @@
         <img src="Images/Tomato.png" width="190px" id="fruit6" onclick="movefruit6()" draggable="false">
         <img src="Images/PeachRemove.png" draggable="false" id="peachLeech" onclick="peachLeechAdd()">
         <audio src="Audio/Dust in the wind.mp3" id="wind"></audio>
-        <div class="center">
-            <button onclick="reset()" id="button">Restart Game</button>
-            <button onclick="playAudio()" id="music">Music On</button>
+        <div id="center">
+
             <h3 id="clicks">0</h3>
             <h1 id="dust">Were All Just Dust In The Wind, Dude.</h1>
             <h2 id="fruit"></h2>
         </div>
+        <button onclick="reset()" id="button">Restart Game</button>
+        <button onclick="playAudio()" id="music">Music On</button>
         <script>
             var music = 0;
             var idFruit = document.getElementById("fruit");
@@ -253,7 +262,7 @@
             function fruitMania(){
                 turnPurple();
                 setTimeout(turnPurple, 1500);
-                document.getElementById("body").style.animationName = "fruitMania";
+                document.getElementById("body").style.animation = "fruitMania 1.5s";
                 document.getElementById("pot").style.display = "none";
                 idFruit.innerHTML = "Fruit Mania!";
                 idFruit.style.fontSize = "100px";
@@ -370,6 +379,19 @@
                 setInterval(function(){
                     if (peachLeechclicks == 100){
                         clearInterval(take);
+                        document.getElementById("peachLeech").style.display = "none";
+                        document.getElementById("image").style.display = "block";
+                        document.getElementById("music").style.display = "block";
+                        document.getElementById("button").style.display = "block";
+                        document.getElementById("clicks").style.display = "block";
+                        document.getElementById("center").style.textAlign = "center";
+                        document.getElementById("body").style.animationName = "turnNormal";
+                        document.getElementById("body").style.backgroundColor = "lightgreen";
+                        document.getElementById("button").style.justifyContent = "center";
+                        document.getElementById("button").style.justifyContent = "center";
+                        document.getElementById("button").style.display = "flex";
+                        document.getElementById("music").style.justifyContent = "center";
+                        document.getElementById("music").style.display = "flex";
                     }
                 }, 0)
                 setTimeout(function(){
@@ -383,6 +405,16 @@
                 if (peachLeechclicks >= 100){
                     document.getElementById("peachLeech").style.display = "none";
                     document.getElementById("image").style.display = "block";
+                    document.getElementById("music").style.display = "block";
+                    document.getElementById("button").style.display = "block";
+                    document.getElementById("clicks").style.display = "block";
+                    document.getElementById("center").style.textAlign = "center";
+                    document.getElementById("body").style.animationName = "turnNormal";
+                    document.getElementById("body").style.backgroundColor = "lightgreen";
+                    document.getElementById("button").style.justifyContent = "center";
+                    document.getElementById("button").style.display = "flex";
+                    document.getElementById("music").style.justifyContent = "center";
+                    document.getElementById("music").style.display = "flex";
                 }else{
                     document.getElementById("dust").style.display = "block";
                     document.getElementById("peachLeech").style.display = "none";
