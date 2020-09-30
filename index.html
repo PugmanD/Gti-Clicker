@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="icon" hrefImages/IconGolfGti.png">
+        <link rel="icon" hreImages/IconGolfGti.png">
         <meta name="veiwport" content="width=device-width, initial-scale=1.0">
         <style>
+            .right{
+                display: inline;
+                right: 0px;
+            }
+            #space{
+                padding: 3px;
+                display: inline;
+            }
+            #footer{
+                background-color: gray;
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                width: 100%;
+            }
             #dust{
                 color: white;
             }
@@ -67,8 +82,6 @@
                 color: white;
                 border: none;
                 cursor: pointer;
-                left: 50%;
-                transform: translate(50%);
             }
             #body{
                 animation-duration: 1.5s;
@@ -79,7 +92,10 @@
                 color: none;
                 background: none;
             }
-            #center{
+            #clicks{
+                display: inline;
+            }
+            .center{
                 text-align: center;
                 z-index: -1;
             }
@@ -166,14 +182,17 @@
         <img src="Images/Tomato.png" width="190px" id="fruit6" onclick="movefruit6()" draggable="false">
         <img src="Images/PeachRemove.png" draggable="false" id="peachLeech" onclick="peachLeechAdd()">
         <audio src="Audio/Dust in the wind.mp3" id="wind"></audio>
-        <div id="center">
-
-            <h3 id="clicks">0</h3>
+        <div class="center">
             <h1 id="dust">Were All Just Dust In The Wind, Dude.</h1>
             <h2 id="fruit"></h2>
         </div>
-        <button onclick="reset()" id="button">Restart Game</button>
-        <button onclick="playAudio()" id="music">Music On</button>
+        <div id="footer">
+            <h2 id="clicks">0</h2><p id="space"></p><h2 id="clicks">POINTS</h2>
+            <div class="right">
+                <button onclick="reset()" id="button">Restart Game</button>
+                <button onclick="playAudio()" id="music">Music On</button>
+            </div>
+        </div>
         <script>
             var music = 0;
             var idFruit = document.getElementById("fruit");
@@ -205,6 +224,7 @@
             document.getElementById("image").style.position = "relative";
             document.getElementById("image").style.marginLeft = "auto";
             document.getElementById("image").style.marginRight = "auto";
+            document.getElementById("clicks").style.textAlign = "right";
             function save(){
                 window.localStorage.setItem("numberSave", carClicks);
                 console.log("Game Saved!");
@@ -363,9 +383,7 @@
                 document.getElementById("fruit4").style.display = "none";
                 document.getElementById("fruit5").style.display = "none";
                 document.getElementById("fruit6").style.display = "none";
-                document.getElementById("button").style.display = "none";
-                document.getElementById("music").style.display = "none";
-                document.getElementById("clicks").style.display = "none";
+                document.getElementById("footer").style.display = "none";
                 document.getElementById("peachLeech").style.display = "block";
                 document.getElementById("uhoh").play();
                 document.getElementById("body").style.animation = "turnBlack 4s";
@@ -381,17 +399,10 @@
                         clearInterval(take);
                         document.getElementById("peachLeech").style.display = "none";
                         document.getElementById("image").style.display = "block";
-                        document.getElementById("music").style.display = "block";
-                        document.getElementById("button").style.display = "block";
-                        document.getElementById("clicks").style.display = "block";
+                        document.getElementById("footer").style.display = "block";
                         document.getElementById("center").style.textAlign = "center";
                         document.getElementById("body").style.animationName = "turnNormal";
                         document.getElementById("body").style.backgroundColor = "lightgreen";
-                        document.getElementById("button").style.justifyContent = "center";
-                        document.getElementById("button").style.justifyContent = "center";
-                        document.getElementById("button").style.display = "flex";
-                        document.getElementById("music").style.justifyContent = "center";
-                        document.getElementById("music").style.display = "flex";
                     }
                 }, 0)
                 setTimeout(function(){
@@ -405,16 +416,10 @@
                 if (peachLeechclicks >= 100){
                     document.getElementById("peachLeech").style.display = "none";
                     document.getElementById("image").style.display = "block";
-                    document.getElementById("music").style.display = "block";
-                    document.getElementById("button").style.display = "block";
-                    document.getElementById("clicks").style.display = "block";
+                    document.getElementById("footer").style.display = "block";
                     document.getElementById("center").style.textAlign = "center";
                     document.getElementById("body").style.animationName = "turnNormal";
                     document.getElementById("body").style.backgroundColor = "lightgreen";
-                    document.getElementById("button").style.justifyContent = "center";
-                    document.getElementById("button").style.display = "flex";
-                    document.getElementById("music").style.justifyContent = "center";
-                    document.getElementById("music").style.display = "flex";
                 }else{
                     document.getElementById("dust").style.display = "block";
                     document.getElementById("peachLeech").style.display = "none";
