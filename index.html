@@ -176,22 +176,22 @@
         </style>
     </head>
     <body id="body" onload="load()">
-        <img srImages/Golf Gti.png" width="400" onclick="add()" id="image" draggable="false">
-        <audio srAudio/Animal crossing.mp3" id="audio"></audio>
-        <audio srAudio/UH Oh.wav" id="uhoh"></audio>
+        <img src="Images/Golf Gti.png" width="400" onclick="add()" id="image" draggable="false">
+        <audio src="Audio/Animal crossing.mp3" id="audio"></audio>
+        <audio src="Audio/UH Oh.wav" id="uhoh"></audio>
         <div>
-            <img srImages/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
+            <img src="Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
         </div>
-        <img srImages/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
-        <img srImages/watermelon.png" width="245px" id="fruit2" onclick="movefruit2()" draggable="false">
-        <img srImages/Blackberry.png" width="245px" id="fruit3" onclick="movefruit3()" draggable="false">
-        <img srImages/Bananas.png" width="245px" id="fruit4" onclick="movefruit4()" draggable="false">
-        <img srImages/Blueberry.png" width="150px" id="fruit5" onclick="movefruit5()" draggable="false">
-        <img srImages/Tomato.png" width="190px" id="fruit6" onclick="movefruit6()" draggable="false">
-        <img srImages/cherry cool copy.png" width="234px" id="fruit7" onclick="movefruit7()" draggable="false">
-        <img srImages/PeachRemove.png" draggable="false" id="peachLeech" onclick="peachLeechAdd()">
-        <audio srAudio/AskRufus.mp3" id="fruitSong"></audio>
-        <audio srAudio/Dust in the wind.mp3" id="wind"></audio>
+        <img src="Images/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
+        <img src="Images/watermelon.png" width="245px" id="fruit2" onclick="movefruit2()" draggable="false">
+        <img src="Images/Blackberry.png" width="245px" id="fruit3" onclick="movefruit3()" draggable="false">
+        <img src="Images/Bananas.png" width="245px" id="fruit4" onclick="movefruit4()" draggable="false">
+        <img src="Images/Blueberry.png" width="150px" id="fruit5" onclick="movefruit5()" draggable="false">
+        <img src="Images/Tomato.png" width="190px" id="fruit6" onclick="movefruit6()" draggable="false">
+        <img src="Images/cherry cool copy.png" width="234px" id="fruit7" onclick="movefruit7()" draggable="false">
+        <img src="Images/PeachRemove.png" draggable="false" id="peachLeech" onclick="peachLeechAdd()">
+        <audio src="Audio/AskRufus.mp3" id="fruitSong"></audio>
+        <audio src="Audio/Dust in the wind.mp3" id="wind"></audio>
         <div class="center">
             <h1 id="dust">Were All Just Dust In The Wind, Dude.</h1>
             <h2 id="fruit"></h2>
@@ -275,12 +275,12 @@
             function sone(){
                 tuberClicks = tuberClicks + 1;
                 if(tuberClicks == 1){
-                    document.getElementById("pot").src = "Images/corn.png";
+                    document.getElementById("pot").src = src="Images/corn.png";
                     document.getElementById("pot").style.animationDuration = "7.5s";
                     carClicks = carClicks + 100;
                 }
                 if(tuberClicks == 2){
-                    document.getElementById("pot").src = "Images/Beats.png";
+                    document.getElementById("pot").src = src="Images/Beats.png";
                     document.getElementById("pot").style.animationDuration = "5s";
                     document.getElementById("pot").style.width = "250px";
                     carClicks = carClicks + 125;
