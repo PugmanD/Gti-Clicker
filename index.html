@@ -4,10 +4,6 @@
         <link rel="icon" href="Images/IconGolfGti.png">
         <meta name="veiwport" content="width=device-width, initial-scale=1.0">
         <style>
-            #space{
-                padding: 3px;
-                display: inline;
-            }
             #footer{
                 background-color: gray;
                 position: absolute;
@@ -81,7 +77,7 @@
                 cursor: pointer;
                 position: absolute;
                 right: 3px;
-                top: 25px;
+                top: 25%;
             }
             #music{
                 padding: 25px 60px;
@@ -91,7 +87,7 @@
                 cursor: pointer;
                 position: absolute;
                 right: 215px;
-                top: 25px;
+                top: 25%;
             }
             #body{
                 animation-duration: 1.5s;
@@ -103,7 +99,9 @@
                 background: none;
             }
             #clicks{
+                position: relative;
                 display: inline;
+                top: 38%;
             }
             .center{
                 text-align: center;
@@ -178,30 +176,29 @@
         </style>
     </head>
     <body id="body" onload="load()">
-        <img src="Images/Golf Gti.png" width="400" onclick="add()" id="image" draggable="false">
-        <audio src="Audio/Animal crossing.mp3" id="audio"></audio>
-        <audio src="Audio/UH Oh.wav" id="uhoh"></audio>
+        <img srImages/Golf Gti.png" width="400" onclick="add()" id="image" draggable="false">
+        <audio srAudio/Animal crossing.mp3" id="audio"></audio>
+        <audio srAudio/UH Oh.wav" id="uhoh"></audio>
         <div>
-            <img src="Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
+            <img srImages/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
         </div>
-        <img src="Images/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
-        <img src="Images/watermelon.png" width="245px" id="fruit2" onclick="movefruit2()" draggable="false">
-        <img src="Images/Blackberry.png" width="245px" id="fruit3" onclick="movefruit3()" draggable="false">
-        <img src="Images/Bananas.png" width="245px" id="fruit4" onclick="movefruit4()" draggable="false">
-        <img src="Images/Blueberry.png" width="150px" id="fruit5" onclick="movefruit5()" draggable="false">
-        <img src="Images/Tomato.png" width="190px" id="fruit6" onclick="movefruit6()" draggable="false">
-        <img src="Images/cherry cool copy.png" width="234px" id="fruit7" onclick="movefruit7()" draggable="false">
-        <img src="Images/PeachRemove.png" draggable="false" id="peachLeech" onclick="peachLeechAdd()">
-        <audio src="Audio/AskRufus.mp3" id="fruitSong"></audio>
-        <audio src="Audio/Dust in the wind.mp3" id="wind"></audio>
+        <img srImages/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
+        <img srImages/watermelon.png" width="245px" id="fruit2" onclick="movefruit2()" draggable="false">
+        <img srImages/Blackberry.png" width="245px" id="fruit3" onclick="movefruit3()" draggable="false">
+        <img srImages/Bananas.png" width="245px" id="fruit4" onclick="movefruit4()" draggable="false">
+        <img srImages/Blueberry.png" width="150px" id="fruit5" onclick="movefruit5()" draggable="false">
+        <img srImages/Tomato.png" width="190px" id="fruit6" onclick="movefruit6()" draggable="false">
+        <img srImages/cherry cool copy.png" width="234px" id="fruit7" onclick="movefruit7()" draggable="false">
+        <img srImages/PeachRemove.png" draggable="false" id="peachLeech" onclick="peachLeechAdd()">
+        <audio srAudio/AskRufus.mp3" id="fruitSong"></audio>
+        <audio srAudio/Dust in the wind.mp3" id="wind"></audio>
         <div class="center">
             <h1 id="dust">Were All Just Dust In The Wind, Dude.</h1>
             <h2 id="fruit"></h2>
         </div>
         <div id="footer">
             <h2 id="clicks">0</h2>
-            <p id="space"></p>
-            <h2 id="clicks">POINTS</h2>
+            <h4 id="clicks">POINTS</h4>
             <button onclick="reset()" id="button">Restart Game</button>
             <button onclick="playAudio()" id="music">Music On</button>
         </div>
@@ -225,6 +222,7 @@
             var fruit7ClckTimes = 0;
             var fruit7 = Math.floor(Math.random() * 1025);
             var peachLeechclicks = 0;
+            var raisin = document.createElement("img");
             setInterval(save, 10000);
             document.getElementById("fruit1").style.display = "none";
             document.getElementById("fruit2").style.display = "none";
@@ -435,7 +433,6 @@
                         document.getElementById("peachLeech").style.display = "none";
                         document.getElementById("image").style.display = "block";
                         document.getElementById("footer").style.display = "block";
-                        document.getElementById("center").style.textAlign = "center";
                         document.getElementById("body").style.animationName = "turnNormal";
                         document.getElementById("body").style.backgroundColor = "lightgreen";
                     }
@@ -445,14 +442,13 @@
                         endPeachLeech();
                         clearInterval(take);
                     }
-                }, 25000)
+                }, 25000);
             }
             function endPeachLeech(){
                 if (peachLeechclicks >= 100){
                     document.getElementById("peachLeech").style.display = "none";
                     document.getElementById("image").style.display = "block";
                     document.getElementById("footer").style.display = "block";
-                    document.getElementById("center").style.textAlign = "center";
                     document.getElementById("body").style.animationName = "turnNormal";
                     document.getElementById("body").style.backgroundColor = "lightgreen";
                 }else{
@@ -476,9 +472,19 @@
             }
             function peachLeechAdd(){
                 peachLeechclicks = peachLeechclicks + 1;
+                if (peachLeechclicks == 100){
+                    setInterval(raisins, 3000);
+                }
                 if (peachLeechclicks >= 100){
                     document.getElementById("peachLeech").style.display = "none";
                 }
+            }
+            function raisins(){
+                raisin.setAttribute("src", "Images/raisin.png");
+                raisin.style.position = "absolute";
+                raisin.style.width = "100px"
+                raisin.style.left = Math.floor(Math.random() * 1000) + "px";
+                document.body.appendChild(raisin);
             }
             setInterval(update, 0);
         </script>
