@@ -1,0 +1,203 @@
+#gas87{
+    padding: 25px 60px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    top: 12.5%;
+}
+#autoclicks{
+    position: absolute;
+    right: 5px;
+    top: 20px;
+}
+#span{
+    color: darkgray;
+    position: absolute;
+    cursor: pointer;
+    padding: 10px 22px;
+    top: 0;
+    right: 0;
+}
+#span:hover{
+    transition: .5s;
+    background-color: lightgray;
+    color: black;
+}
+#span:not(:hover){
+    transition: .5s;
+    background-color: white;
+    color: darkgray;
+}
+#footer{
+    background-color: gray;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: -1;
+    height: 100px;
+}
+#dust{
+    color: white;
+}
+img{
+    cursor: pointer;
+}
+#peachLeech{
+    position: absolute;
+    animation-duration: 3s;
+}
+#fruit7{
+    position: absolute;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-name: fruit1;
+}
+#fruit6{
+    position: absolute;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-name: fruit1;
+}
+#fruit5{
+    position: absolute;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-name: fruit1;
+}
+#fruit4{
+    position: absolute;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-name: fruit1;
+}
+#fruit3{
+    position: absolute;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-name: fruit1;
+}
+#fruit2{
+    position: absolute;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-name: fruit1;
+}
+#fruit1{
+    position: absolute;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-name: fruit1;
+}
+#fruit{
+    position: relative;
+    text-align: center;
+}
+#button{
+    padding: 25px 60px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 3px;
+    top: 20%;
+}
+#music{
+    padding: 25px 60px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 215px;
+    top: 20%;
+}
+#body{
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+    cursor: default;
+    overflow: hidden;
+}
+::selection{
+    color: none;
+    background: none;
+}
+#clicks{
+    position: relative;
+    display: inline;
+    top: 38%;
+}
+.center{
+    text-align: center;
+    z-index: -1;
+}
+#image{
+    display: block;
+    cursor: pointer;
+    z-index: 100;
+}
+.potato{
+    position: absolute;
+    top: 100px;
+    left: 0;
+    z-index: 99;
+    animation-duration: 10s;
+    animation-name: potato;
+    animation-iteration-count: infinite;
+}
+@keyframes potato{
+    0%{top: 100px;
+    left: calc(-10%);
+    }
+    50%{top: 100px;
+    left: calc(110%);
+    transform: rotateZ(360deg);
+    }
+    100%{top: 100px;
+    left: calc(-10%);
+    transform: rotateZ(-360deg);
+    }
+}
+@keyframes fruitMania{
+    to{background-color: #a138d6;}
+    from{background-color: white;}
+}
+@keyframes fruitText{
+    0%{color: tomato; opacity: 1;}
+    10%{color: yellow;}
+    20%{color: tomato;}
+    30%{color: yellow;}
+    40%{color: tomato;}
+    50%{color: yellow;}
+    60%{color: tomato;}
+    70%{color: yellow;}
+    80%{color: tomato;}
+    90%{color: yellow;}
+    100%{color: tomato; opacity: 0;}
+}
+@keyframes fruit1{
+    0%{left: -100px;
+    }
+    50%{left: calc(90%);
+    transform: rotateZ(360deg);
+    }
+    100%{left: -100px;
+    transform: rotateZ(-360deg);
+    }
+}
+@keyframes turnBlack{
+    to{background-color: black;}
+    from{background-color: #a138d6;}
+}
+@keyframes peachLeech{
+    to{width: 500px; height: 500px;}
+    from{width: 1000px; height: 1000px;}
+}
+@keyframes turnNormal{
+    to{background-color: lightgreen;}
+    from{background-color: black;}
+}
