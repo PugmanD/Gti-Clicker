@@ -4,6 +4,39 @@
         <link rel="icon" href="Images/IconGolfGti.png">
         <meta name="veiwport" content="width=device-width, initial-scale=1.0">
         <style>
+            #gas87{
+                padding: 25px 60px;
+                background-color: green;
+                color: white;
+                border: none;
+                cursor: pointer;
+                position: absolute;
+                left: 50%;
+                top: 12.5%;
+            }
+            #autoclicks{
+                position: absolute;
+                right: 5px;
+                top: 20px;
+            }
+            #span{
+                color: darkgray;
+                position: absolute;
+                cursor: pointer;
+                padding: 10px 22px;
+                top: 0;
+                right: 0;
+            }
+            #span:hover{
+                transition: .5s;
+                background-color: lightgray;
+                color: black;
+            }
+            #span:not(:hover){
+                transition: .5s;
+                background-color: white;
+                color: darkgray;
+            }
             #footer{
                 background-color: gray;
                 position: absolute;
@@ -77,7 +110,7 @@
                 cursor: pointer;
                 position: absolute;
                 right: 3px;
-                top: 25%;
+                top: 20%;
             }
             #music{
                 padding: 25px 60px;
@@ -87,11 +120,12 @@
                 cursor: pointer;
                 position: absolute;
                 right: 215px;
-                top: 25%;
+                top: 20%;
             }
             #body{
                 animation-duration: 1.5s;
                 animation-iteration-count: 1;
+                cursor: default;
                 overflow: hidden;
             }
             ::selection{
@@ -192,6 +226,8 @@
         <img src="Images/PeachRemove.png" draggable="false" id="peachLeech" onclick="peachLeechAdd()">
         <audio src="Audio/AskRufus.mp3" id="fruitSong"></audio>
         <audio src="Audio/Dust in the wind.mp3" id="wind"></audio>
+        <span id="span" onclick="show()">Show Autoclicks</span>
+        <h2 id="autoclicks">Autoclicks: 0</h2>
         <div class="center">
             <h1 id="dust">Were All Just Dust In The Wind, Dude.</h1>
             <h2 id="fruit"></h2>
@@ -199,6 +235,7 @@
         <div id="footer">
             <h2 id="clicks">0</h2>
             <h4 id="clicks">POINTS</h4>
+            <button id="gas87" onclick="gas87()">Gas <br><strong>87</strong>(300 Clicks)</button>
             <button onclick="reset()" id="button">Restart Game</button>
             <button onclick="playAudio()" id="music">Music On</button>
         </div>
@@ -207,6 +244,8 @@
             var idFruit = document.getElementById("fruit");
             var carClicks = 0;
             var tuberClicks = 0;
+            var autoClicks = 0;
+            var showHide = false;
             var fruit1 = Math.floor(Math.random() * 1025);
             var fruit1ClckTimes = 0;
             var fruit2 = Math.floor(Math.random() * 1025);
@@ -238,12 +277,15 @@
             document.getElementById("image").style.marginLeft = "auto";
             document.getElementById("image").style.marginRight = "auto";
             document.getElementById("clicks").style.textAlign = "right";
+            document.getElementById("autoclicks").style.display = "none";
             function save(){
                 window.localStorage.setItem("numberSave", carClicks);
+                window.localStorage.setItem("autoclicks", autoClicks);
                 console.log("Game Saved!");
             }
             function load(){
                 carClicks = parseInt(window.localStorage.getItem("numberSave"));
+                autoClicks = parseInt(window.localStorage.getItem("autoclicks"));
             }
             function playAudio(){
                 var audio = document.getElementById("audio");
@@ -260,27 +302,50 @@
             function reset(){
                 if (confirm("Are you sure you want to reset score?")){
                     window.localStorage.setItem("numberSave", 0);
+                    window.localStorage.setItem("autoclicks", 0);
                     carClicks = parseInt(window.localStorage.getItem("numberSave"));
+                    autoClicks = parseInt(window.localStorage.getItem("autoclicks"));
                 }
             }
             function add(){
                 carClicks = carClicks + 1
                 document.getElementById("clicks").innerHTML = carClicks;
             }
+            function gas87(){
+                if (carClicks >= 300){
+                    carClicks = carClicks - 300;
+                    autoClicks = autoClicks + 1;
+                }
+            }
+            function show(){
+                if (showHide == false){
+                    document.getElementById("autoclicks").style.display = "block";
+                    document.getElementById("span").innerHTML = "Hide Autoclicks";
+                    showHide = true;
+                }else{
+                    document.getElementById("autoclicks").style.display = "none";
+                    document.getElementById("span").innerHTML = "Show Autoclicks";
+                    showHide = false;
+                }
+            }
             function update(){
                 document.getElementById("clicks").innerHTML = carClicks;
                 carClicks = Math.round(carClicks);
                 document.title = "Gti Clicker: " + carClicks + " Clicks";
+                document.getElementById("autoclicks").innerHTML = "Autoclicks: " + autoClicks;
+            }
+            function updateAutoClicks(){
+                carClicks = carClicks + autoClicks;
             }
             function sone(){
                 tuberClicks = tuberClicks + 1;
                 if(tuberClicks == 1){
-                    document.getElementById("pot").src = src="Images/corn.png";
+                    document.getElementById("pot").src = "Images/corn.png";
                     document.getElementById("pot").style.animationDuration = "7.5s";
                     carClicks = carClicks + 100;
                 }
                 if(tuberClicks == 2){
-                    document.getElementById("pot").src = src="Images/Beats.png";
+                    document.getElementById("pot").src = "Images/Beats.png";
                     document.getElementById("pot").style.animationDuration = "5s";
                     document.getElementById("pot").style.width = "250px";
                     carClicks = carClicks + 125;
@@ -311,6 +376,8 @@
                 idFruit.style.animationDuration = "7s";
                 document.getElementById("fruit1").style.top = Math.floor(Math.random() * 1025) + "px";
                 document.getElementById("fruit2").style.top = Math.floor(Math.random() * 1025) + "px";
+                document.getElementById("span").style.display = "none";
+                document.getElementById("autoclicks").style.display = "none";
                 setTimeout(hideFruitText, 7000);
                 setTimeout(peachLeech, 15000);
             }
@@ -477,16 +544,25 @@
                 }
                 if (peachLeechclicks >= 100){
                     document.getElementById("peachLeech").style.display = "none";
+                    document.getElementById("span").style.display = "block";
+                    document.getElementById("span").style.transition = "1.5s"
+                    document.getElementById("span").style.backgroundColor = "lightgreen";
+                    if (showHide == false){
+                        document.getElementById("autoclicks").style.display = "none";
+                    }else{
+                        document.getElementById("autoclicks").style.display = "block";
+                    }
                 }
             }
             function raisins(){
-                raisin.setAttribute("src", "Images/raisin.png");
+                raisin.setAttribute("src", "Images/raisins.png");
                 raisin.style.position = "absolute";
                 raisin.style.width = "100px"
                 raisin.style.left = Math.floor(Math.random() * 1000) + "px";
                 document.body.appendChild(raisin);
             }
             setInterval(update, 0);
+            setInterval(updateAutoClicks, 1000);
         </script>
     </body>
 </html>
