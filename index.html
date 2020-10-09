@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="Images/IconGolfGti.png">
+        <link rel="stylesheet" href="GTI Clicker.css">
+        <meta name="veiwport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body id="body" onload="load()">
+        <img src="Images/Golf Gti.png" width="400" onclick="add()" id="image" draggable="false">
+        <audio src="Audio/Animal crossing.mp3" id="audio"></audio>
+        <audio src="Audio/UH Oh.wav" id="uhoh"></audio>
+        <div>
+            <img src="Images/potato.png" width="175" id="pot" class="potato" onclick="sone()" draggable="false">
+        </div>
+        <img src="Images/cherry.png" width="320px" id="fruit1" onclick="movefruit1()" draggable="false">
+        <img src="Images/watermelon.png" width="245px" id="fruit2" onclick="movefruit2()" draggable="false">
+        <img src="Images/Blackberry.png" width="245px" id="fruit3" onclick="movefruit3()" draggable="false">
+        <img src="Images/Bananas.png" width="245px" id="fruit4" onclick="movefruit4()" draggable="false">
+        <img src="Images/Blueberry.png" width="150px" id="fruit5" onclick="movefruit5()" draggable="false">
+        <img src="Images/Tomato.png" width="190px" id="fruit6" onclick="movefruit6()" draggable="false">
+        <img src="Images/cherry cool copy.png" width="234px" id="fruit7" onclick="movefruit7()" draggable="false">
+        <img src="Images/PeachRemove.png" draggable="false" id="peachLeech" onclick="peachLeechAdd()">
+        <audio src="Audio/AskRufus.mp3" id="fruitSong"></audio>
+        <audio src="Audio/Dust in the wind.mp3" id="wind"></audio>
+        <audio src="Audio/Invader zim.mp3" id="zim"></audio>
+        <span id="span" onclick="show()">Show Autoclicks</span>
+        <h2 id="autoclicks">Autoclicks: 0</h2>
+        <div class="center">
+            <h1 id="dust">Were All Just Dust In The Wind, Dude.</h1>
+            <h2 id="fruit"></h2>
+        </div>
+        <div id="footer">
+            <h2 id="clicks">0</h2>
+            <h4 id="clicks">POINTS</h4>
+            <button id="gas87" onclick="gas87()">Gas <br><strong>87</strong>(300 Clicks)</button>
+            <button onclick="reset()" id="button">Restart Game</button>
+            <button onclick="playAudio()" id="music">Music On</button>
+        </div>
+        <script src="GTI Clicker.js"></script>
+    </body>
+</html>
