@@ -198,6 +198,6 @@ img{
     from{width: 1000px; height: 1000px;}
 }
 @keyframes turnNormal{
-    to{background-color: lightgreen;}
+    to{background-color: white;}
     from{background-color: black;}
 }

@@ -19,7 +19,6 @@ var fruit6ClckTimes = 0;
 var fruit7ClckTimes = 0;
 var fruit7 = Math.floor(Math.random() * 1025);
 var peachLeechclicks = 0;
-var raisin = document.createElement("img");
 setInterval(save, 10000);
 document.getElementById("fruit1").style.display = "none";
 document.getElementById("fruit2").style.display = "none";
@@ -259,7 +258,7 @@ function peachLeech(){
             document.getElementById("image").style.display = "block";
             document.getElementById("footer").style.display = "block";
             document.getElementById("body").style.animationName = "turnNormal";
-            document.getElementById("body").style.backgroundColor = "lightgreen";
+            document.getElementById("body").style.backgroundColor = "white";
         }
     }, 0);
     setTimeout(function(){
@@ -275,7 +274,7 @@ function endPeachLeech(){
         document.getElementById("image").style.display = "block";
         document.getElementById("footer").style.display = "block";
         document.getElementById("body").style.animationName = "turnNormal";
-        document.getElementById("body").style.backgroundColor = "lightgreen";
+        document.getElementById("body").style.backgroundColor = "white";
     }else{
         document.getElementById("dust").style.display = "block";
         document.getElementById("peachLeech").style.display = "none";
@@ -303,8 +302,10 @@ function peachLeechAdd(){
     if (peachLeechclicks >= 100){
         document.getElementById("peachLeech").style.display = "none";
         document.getElementById("span").style.display = "block";
-        document.getElementById("span").style.transition = "1.5s"
-        document.getElementById("span").style.backgroundColor = "lightgreen";
+        if (music == 1){
+            document.getElementById("audio").pause();
+            document.getElementById("music").innerHTML = ""
+        }
         if (showHide == false){
             document.getElementById("autoclicks").style.display = "none";
         }else{
@@ -313,11 +314,20 @@ function peachLeechAdd(){
     }
 }
 function raisins(){
+    var raisin = document.createElement("img");
     raisin.setAttribute("src", "Images/raisins.png");
+    raisin.setAttribute("id", "raisin");
+    raisin.setAttribute("onclick", "rasinClick()");
     raisin.style.position = "absolute";
-    raisin.style.width = "100px"
-    raisin.style.left = Math.floor(Math.random() * 1000) + "px";
+    raisin.style.width = "100px";
+    raisin.style.left = Math.floor(Math.random() * 100) + "%";
+    raisin.style.top = Math.floor(Math.random() * 90) + "%";
     document.body.appendChild(raisin);
+}
+function rasinClick(){
+    var rasinForRemove = document.getElementById("raisin");
+    rasinForRemove.remove();
+    carClicks = carClicks + 10;
 }
 setInterval(update, 0);
 setInterval(updateAutoClicks, 1000);
