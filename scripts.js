@@ -97,12 +97,12 @@ function updateAutoClicks(){
 function sone(){
     tuberClicks = tuberClicks + 1;
     if(tuberClicks == 1){
-        document.getElementById("pot").src = "../Images/corn.png";
+        document.getElementById("pot").src = "Images/corn.png";
         document.getElementById("pot").style.animationDuration = "7.5s";
         carClicks = carClicks + 100;
     }
     if(tuberClicks == 2){
-        document.getElementById("pot").src = "../Images/Beats.png";
+        document.getElementById("pot").src = "Images/Beats.png";
         document.getElementById("pot").style.animationDuration = "5s";
         document.getElementById("pot").style.width = "250px";
         carClicks = carClicks + 125;
@@ -315,7 +315,7 @@ function peachLeechAdd(){
 }
 function raisins(){
     var raisin = document.createElement("img");
-    raisin.setAttribute("src", "../Images/raisins.png");
+    raisin.setAttribute("src", "Images/raisins.png");
     raisin.setAttribute("id", "raisin");
     raisin.setAttribute("onclick", "rasinClick()");
     raisin.style.position = "absolute";
