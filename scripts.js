@@ -297,7 +297,10 @@ function peachPosition(){
 function peachLeechAdd(){
     peachLeechclicks = peachLeechclicks + 1;
     if (peachLeechclicks == 100){
-        setInterval(raisins, 3000);
+        var reapeatRaisins = setInterval(raisins, 3000);
+        setTimeout(function(){
+            clearInterval(reapeatRaisins);
+        }, 20000);
     }
     if (peachLeechclicks >= 100){
         document.getElementById("peachLeech").style.display = "none";
@@ -316,18 +319,17 @@ function peachLeechAdd(){
 function raisins(){
     var raisin = document.createElement("img");
     raisin.setAttribute("src", "Images/raisins.png");
-    raisin.setAttribute("id", "raisin");
-    raisin.setAttribute("onclick", "rasinClick()");
+    raisin.setAttribute("class", "raisin");
+    raisin.onclick = function (e) {
+        e.target.remove();
+        carClicks = carClicks + 10;
+    };
     raisin.style.position = "absolute";
     raisin.style.width = "100px";
     raisin.style.left = Math.floor(Math.random() * 100) + "%";
     raisin.style.top = Math.floor(Math.random() * 90) + "%";
     document.body.appendChild(raisin);
 }
-function rasinClick(){
-    var rasinForRemove = document.getElementById("raisin");
-    rasinForRemove.remove();
-    carClicks = carClicks + 10;
-}
+
 setInterval(update, 0);
 setInterval(updateAutoClicks, 1000);
