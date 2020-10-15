@@ -19,6 +19,8 @@ var fruit6ClckTimes = 0;
 var fruit7ClckTimes = 0;
 var fruit7 = Math.floor(Math.random() * 1025);
 var peachLeechclicks = 0;
+var raisinClicks = 0;
+var raisinForRemove = [];
 setInterval(save, 10000);
 document.getElementById("fruit1").style.display = "none";
 document.getElementById("fruit2").style.display = "none";
@@ -299,7 +301,24 @@ function peachLeechAdd(){
     if (peachLeechclicks == 100){
         var reapeatRaisins = setInterval(raisins, 3000);
         setTimeout(function(){
-            clearInterval(reapeatRaisins);
+            if (raisinClicks >= 10){
+                clearInterval(reapeatRaisins);
+                document.getElementsByName("zim").pause();
+                raisinForRemove.every().remove();
+            }else{
+                var createH2 = document.createElement("h2");
+                createH2.innerHTML = "You lost, sad";
+                document.body.appendChild(createH2);
+                window.localStorage.setItem("numberSave", 0);
+                window.localStorage.setItem("autoClicks", 0);
+                raisinForRemove.every().remove();
+                clearInterval(reapeatRaisins);
+                document.getElementById("image").style.display = "none";
+                document.getElementById("span").style.display = "none";
+                document.getElementById("footer").style.display = "none";
+                document.getElementById("gas87").style.display = "none";
+                document.getElementById("autoclicks").style.display = "none";
+            }
         }, 20000);
     }
     if (peachLeechclicks >= 100){
@@ -307,7 +326,10 @@ function peachLeechAdd(){
         document.getElementById("span").style.display = "block";
         if (music == 1){
             document.getElementById("audio").pause();
-            document.getElementById("music").innerHTML = "";
+            document.getElementById("music").innerHTML = "Music On";
+            document.getElementById("zim").play();
+        }else{
+            document.getElementById("zim").play();
         }
         if (showHide == false){
             document.getElementById("autoclicks").style.display = "none";
@@ -318,8 +340,10 @@ function peachLeechAdd(){
 }
 function raisins(){
     var raisin = document.createElement("img");
+    raisinForRemove.push("raisins");
     raisin.setAttribute("src", "Images/raisins.png");
-    raisin.setAttribute("class", "raisin");
+    raisin.setAttribute("class", "raisins");
+    raisin.setAttribute("draggable", "false");
     raisin.onclick = function (e) {
         e.target.remove();
         carClicks = carClicks + 10;
@@ -330,6 +354,5 @@ function raisins(){
     raisin.style.top = Math.floor(Math.random() * 90) + "%";
     document.body.appendChild(raisin);
 }
-
 setInterval(update, 0);
 setInterval(updateAutoClicks, 1000);
