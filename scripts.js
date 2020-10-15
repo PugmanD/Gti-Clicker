@@ -299,7 +299,7 @@ function peachPosition(){
 function peachLeechAdd(){
     peachLeechclicks = peachLeechclicks + 1;
     if (peachLeechclicks == 100){
-        var reapeatRaisins = setInterval(raisins, 3000);
+        var reapeatRaisins = setInterval(raisins, 700);
         setTimeout(function(){
             if (raisinClicks >= 10){
                 clearInterval(reapeatRaisins);
@@ -311,7 +311,6 @@ function peachLeechAdd(){
                 document.body.appendChild(createH2);
                 window.localStorage.setItem("numberSave", 0);
                 window.localStorage.setItem("autoClicks", 0);
-                raisinForRemove.every().remove();
                 clearInterval(reapeatRaisins);
                 document.getElementById("image").style.display = "none";
                 document.getElementById("span").style.display = "none";
@@ -340,10 +339,13 @@ function peachLeechAdd(){
 }
 function raisins(){
     var raisin = document.createElement("img");
-    raisinForRemove.push("raisins");
+    raisinForRemove.push(raisins);
     raisin.setAttribute("src", "Images/raisins.png");
     raisin.setAttribute("class", "raisins");
     raisin.setAttribute("draggable", "false");
+    setTimeout(function(){
+        raisinForRemove.every().remove();
+    }, 20500)
     raisin.onclick = function (e) {
         e.target.remove();
         carClicks = carClicks + 10;
