@@ -339,14 +339,14 @@ function peachLeechAdd(){
 }
 function raisins(){
     var raisin = document.createElement("img");
-    raisinForRemove.push(raisins);
+    raisinForRemove.push(raisin);
     raisin.setAttribute("src", "Images/raisins.png");
     raisin.setAttribute("class", "raisins");
     raisin.setAttribute("draggable", "false");
     setTimeout(function(){
         raisinForRemove.every().remove();
     }, 20500)
-    raisin.onclick = function (e) {
+    raisin.onclick = function(e){
         e.target.remove();
         carClicks = carClicks + 10;
     };
