@@ -20,7 +20,6 @@ var fruit7ClckTimes = 0;
 var fruit7 = Math.floor(Math.random() * 1025);
 var peachLeechclicks = 0;
 var raisinClicks = 0;
-var raisinForRemove = [];
 setInterval(save, 10000);
 document.getElementById("fruit1").style.display = "none";
 document.getElementById("fruit2").style.display = "none";
@@ -37,6 +36,19 @@ document.getElementById("image").style.marginLeft = "auto";
 document.getElementById("image").style.marginRight = "auto";
 document.getElementById("clicks").style.textAlign = "right";
 document.getElementById("autoclicks").style.display = "none";
+document.getElementById("input").addEventListener("keyup", function(e){
+    if(e.keyCode == 13){
+        checkIfCorrrectCode();
+    }
+});
+function checkIfCorrrectCode(){
+    var value = document.getElementById("input").value
+    if(value == "raisin"){
+        carClicks = carClicks + 350;
+    }else{
+        alert("That is not the right code.")
+    }
+}
 function save(){
     window.localStorage.setItem("numberSave", carClicks);
     window.localStorage.setItem("autoclicks", autoClicks);
@@ -339,16 +351,20 @@ function peachLeechAdd(){
 }
 function raisins(){
     var raisin = document.createElement("img");
+    var raisinForRemove = [];
     raisinForRemove.push(raisin);
     raisin.setAttribute("src", "Images/raisins.png");
     raisin.setAttribute("class", "raisins");
     raisin.setAttribute("draggable", "false");
+    raisin.style.zIndex = "1000";
+    raisin.style.position = "absolute";
     setTimeout(function(){
         raisinForRemove.every().remove();
     }, 20500)
     raisin.onclick = function(e){
         e.target.remove();
         carClicks = carClicks + 10;
+        raisinClicks = raisinClicks + 1;
     };
     raisin.style.position = "absolute";
     raisin.style.width = "100px";
