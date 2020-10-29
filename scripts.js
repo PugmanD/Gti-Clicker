@@ -20,6 +20,7 @@ var fruit7ClckTimes = 0;
 var fruit7 = Math.floor(Math.random() * 1025);
 var peachLeechclicks = 0;
 var raisinClicks = 0;
+var raisinForRemove = [];
 setInterval(save, 10000);
 document.getElementById("fruit1").style.display = "none";
 document.getElementById("fruit2").style.display = "none";
@@ -111,12 +112,12 @@ function updateAutoClicks(){
 function sone(){
     tuberClicks = tuberClicks + 1;
     if(tuberClicks == 1){
-        document.getElementById("pot").src = "Images/corn.png";
+        document.getElementById("pot").src = "../Images/corn.png";
         document.getElementById("pot").style.animationDuration = "7.5s";
         carClicks = carClicks + 100;
     }
     if(tuberClicks == 2){
-        document.getElementById("pot").src = "Images/Beats.png";
+        document.getElementById("pot").src = "../Images/Beats.png";
         document.getElementById("pot").style.animationDuration = "5s";
         document.getElementById("pot").style.width = "250px";
         carClicks = carClicks + 125;
@@ -316,7 +317,6 @@ function peachLeechAdd(){
             if (raisinClicks >= 10){
                 clearInterval(reapeatRaisins);
                 document.getElementsByName("zim").pause();
-                raisinForRemove.every().remove();
             }else{
                 var createH2 = document.createElement("h2");
                 createH2.innerHTML = "You lost, sad";
@@ -351,16 +351,12 @@ function peachLeechAdd(){
 }
 function raisins(){
     var raisin = document.createElement("img");
-    var raisinForRemove = [];
     raisinForRemove.push(raisin);
-    raisin.setAttribute("src", "Images/raisins.png");
+    raisin.setAttribute("src", "../Images/raisins.png");
     raisin.setAttribute("class", "raisins");
     raisin.setAttribute("draggable", "false");
     raisin.style.zIndex = "1000";
     raisin.style.position = "absolute";
-    setTimeout(function(){
-        raisinForRemove.every().remove();
-    }, 20500)
     raisin.onclick = function(e){
         e.target.remove();
         carClicks = carClicks + 10;
