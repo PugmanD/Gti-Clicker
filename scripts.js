@@ -19,8 +19,7 @@ var fruit6ClckTimes = 0;
 var fruit7ClckTimes = 0;
 var fruit7 = Math.floor(Math.random() * 1025);
 var peachLeechclicks = 0;
-var raisinClicks = 0;
-var raisinForRemove = [];
+var Game = {version: "V:1.0.0", mode: "Beta"}
 setInterval(save, 10000);
 document.getElementById("fruit1").style.display = "none";
 document.getElementById("fruit2").style.display = "none";
@@ -37,6 +36,10 @@ document.getElementById("image").style.marginLeft = "auto";
 document.getElementById("image").style.marginRight = "auto";
 document.getElementById("clicks").style.textAlign = "right";
 document.getElementById("autoclicks").style.display = "none";
+document.getElementById("bowl").style.display = "none";
+document.getElementById("flour").style.display = "none";
+document.getElementById("yeast").style.display = "none";
+document.getElementById("version").innerHTML = Game.version + ", " + Game.mode;
 document.getElementById("input").addEventListener("keyup", function(e){
     if(e.keyCode == 13){
         checkIfCorrrectCode();
@@ -112,12 +115,12 @@ function updateAutoClicks(){
 function sone(){
     tuberClicks = tuberClicks + 1;
     if(tuberClicks == 1){
-        document.getElementById("pot").src = "../Images/corn.png";
+        document.getElementById("pot").src = "Images/corn.png";
         document.getElementById("pot").style.animationDuration = "7.5s";
         carClicks = carClicks + 100;
     }
     if(tuberClicks == 2){
-        document.getElementById("pot").src = "../Images/Beats.png";
+        document.getElementById("pot").src = "Images/Beats.png";
         document.getElementById("pot").style.animationDuration = "5s";
         document.getElementById("pot").style.width = "250px";
         carClicks = carClicks + 125;
@@ -270,8 +273,6 @@ function peachLeech(){
         if (peachLeechclicks == 100){
             clearInterval(take);
             document.getElementById("peachLeech").style.display = "none";
-            document.getElementById("image").style.display = "block";
-            document.getElementById("footer").style.display = "block";
             document.getElementById("body").style.animationName = "turnNormal";
             document.getElementById("body").style.backgroundColor = "white";
         }
@@ -312,29 +313,13 @@ function peachPosition(){
 function peachLeechAdd(){
     peachLeechclicks = peachLeechclicks + 1;
     if (peachLeechclicks == 100){
-        var reapeatRaisins = setInterval(raisins, 700);
-        setTimeout(function(){
-            if (raisinClicks >= 10){
-                clearInterval(reapeatRaisins);
-                document.getElementsByName("zim").pause();
-            }else{
-                var createH2 = document.createElement("h2");
-                createH2.innerHTML = "You lost, sad";
-                document.body.appendChild(createH2);
-                window.localStorage.setItem("numberSave", 0);
-                window.localStorage.setItem("autoClicks", 0);
-                clearInterval(reapeatRaisins);
-                document.getElementById("image").style.display = "none";
-                document.getElementById("span").style.display = "none";
-                document.getElementById("footer").style.display = "none";
-                document.getElementById("gas87").style.display = "none";
-                document.getElementById("autoclicks").style.display = "none";
-            }
-        }, 20000);
+        document.getElementById("bowl").style.display = "block";
+        document.getElementById("flour").style.display = "block";
+        document.getElementById("flour").innerHTML = "<br>";
+        document.getElementById("yeast").style.display = "block";
     }
     if (peachLeechclicks >= 100){
         document.getElementById("peachLeech").style.display = "none";
-        document.getElementById("span").style.display = "block";
         if (music == 1){
             document.getElementById("audio").pause();
             document.getElementById("music").innerHTML = "Music On";
@@ -349,10 +334,20 @@ function peachLeechAdd(){
         }
     }
 }
+function flourTrigger(){
+    document.getElementById("flour").style.display = "none";
+    document.getElementById("bowl").src = "Images/Bowl and flour.png";
+    carClicks = carClicks + 15;
+    document.getElementById("yeast").addEventListener("click", function(){
+        document.getElementById("yeast").style.display = "none";
+        document.getElementById("bowl").src = "Images/Bowl and yeast.png";
+        carClicks = carClicks + 15;
+    });
+}
 function raisins(){
     var raisin = document.createElement("img");
     raisinForRemove.push(raisin);
-    raisin.setAttribute("src", "../Images/raisins.png");
+    raisin.setAttribute("src", "Images/raisins.png");
     raisin.setAttribute("class", "raisins");
     raisin.setAttribute("draggable", "false");
     raisin.style.zIndex = "1000";

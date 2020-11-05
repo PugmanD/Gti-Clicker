@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link id="icon" rel="icon" href="Images/SnapShotGamesLogoInDay.png">
         <link rel="stylesheet" href="style.css">
         <meta name="veiwport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,9 @@
         <img src="Images/Blueberry.png" width="150px" id="fruit5" onclick="movefruit5()" draggable="false">
         <img src="Images/Tomato.png" width="190px" id="fruit6" onclick="movefruit6()" draggable="false">
         <img src="Images/cherry cool copy.png" width="234px" id="fruit7" onclick="movefruit7()" draggable="false">
+        <img src="Images/Flour.png" width="100px" id="flour" onclick="flourTrigger()" draggable="false" alt="flour">
+        <img src="" width="100px" id="yeast" draggable="false" alt="yeast">
+        <img src="Images/bowl.png" width="800px" id="bowl" draggable="false">
         <img src="Images/PeachRemove.png" draggable="false" id="peachLeech" onclick="peachLeechAdd()">
         <audio src="Audio/AskRufus.mp3" id="fruitSong"></audio>
         <audio src="Audio/Dust in the wind.mp3" id="wind"></audio>
@@ -38,6 +42,7 @@
             <button onclick="reset()" id="button">Restart Game</button>
             <button onclick="playAudio()" id="music">Music On</button>
         </div>
+        <p id="version"></p>
         <script src="scripts.js"></script>
     </body>
 </html>
