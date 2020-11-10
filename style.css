@@ -6,13 +6,25 @@
     left: 0px;
     position: absolute;
 }
+#sugar{
+    position: absolute;
+    top: 30px;
+    left: 27%;
+    z-index: 1;
+}
 #yeast{
+    position: absolute;
+    top: 30px;
+    left: 20%;
+    z-index: 1;
+}
+#peachLeechClickCounter{
+    color: white;
 }
 #flour{
     position: absolute;
-    top: 20%;
-    left: 23%;
-    z-index: 1;
+    top: 30px;
+    left: 7%;
 }
 #bowl{
     cursor: default;
