@@ -36,6 +36,7 @@
 #input{
     border: none;
     background-color: green;
+    color: white;
     padding: 25px;
     position: absolute;
     right: 59%;
