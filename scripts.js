@@ -19,7 +19,8 @@ var fruit6ClckTimes = 0;
 var fruit7ClckTimes = 0;
 var fruit7 = Math.floor(Math.random() * 90);
 var peachLeechclicks = 0;
-var Game = {version: "V:1.0.0", mode: "Beta"}
+var codeUsed = "false";
+var Game = {version: "V:1.0.1", mode: "Beta"}
 setInterval(save, 10000);
 document.getElementById("fruit1").style.display = "none";
 document.getElementById("fruit2").style.display = "none";
@@ -49,10 +50,19 @@ document.getElementById("input").addEventListener("keyup", function(e){
 });
 function checkIfCorrrectCode(){
     var value = document.getElementById("input").value
-    if(value == "raisin"){
-        carClicks = carClicks + 350;
+    if(value != "raisin"){
+        alert("Not correct code.");
+    }
+    if(codeUsed == "false"){
+        if(value == "raisin"){
+            codeUsed = "true";
+            carClicks = carClicks + 350;
+            window.localStorage.setItem("codeUsed", codeUsed);
+        }
     }else{
-        alert("That is not the right code.")
+        if(value == "raisin"){
+            alert("You have used this code already.");
+        }
     }
 }
 function updatePeachLeechClickCounter(){
@@ -66,6 +76,7 @@ function save(){
 function load(){
     carClicks = parseInt(window.localStorage.getItem("numberSave"));
     autoClicks = parseInt(window.localStorage.getItem("autoclicks"));
+    codeUsed = window.localStorage.getItem("codeUsed");
 }
 function playAudio(){
     var audio = document.getElementById("audio");
@@ -80,11 +91,13 @@ function playAudio(){
     }
 }
 function reset(){
-    if (confirm("Are you sure you want to reset score?")){
+    if(confirm("Are you sure you want to reset score?")){
         window.localStorage.setItem("numberSave", 0);
         window.localStorage.setItem("autoclicks", 0);
+        window.localStorage.setItem("codeUsed", "false");
         carClicks = parseInt(window.localStorage.getItem("numberSave"));
         autoClicks = parseInt(window.localStorage.getItem("autoclicks"));
+        codeUsed = window.localStorage.getItem("codeUsed");
     }
 }
 function add(){
@@ -92,13 +105,19 @@ function add(){
     document.getElementById("clicks").innerHTML = carClicks;
 }
 function gas87(){
-    if (carClicks >= 300){
+    if(carClicks >= 300){
         carClicks = carClicks - 300;
         autoClicks = autoClicks + 1;
     }
 }
+function gas89(){
+    if(carClicks >= 1000){
+        carClicks = carClicks - 1000;
+        autoClicks = autoClicks + 5;
+    }
+}
 function show(){
-    if (showHide == false){
+    if(showHide == false){
         document.getElementById("autoclicks").style.display = "block";
         document.getElementById("span").innerHTML = "Hide Autoclicks";
         showHide = true;

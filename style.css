@@ -39,19 +39,9 @@
     color: white;
     padding: 25px;
     position: absolute;
-    right: 59%;
+    left: 120px;
     top: 19%;
     font-size: 18px;
-}
-#btn{
-    padding: 25px 60px;
-    background-color: green;
-    color: white;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 20%;
-    right: 50.5%;
 }
 #gas87{
     padding: 25px 60px;
@@ -60,7 +50,17 @@
     border: none;
     cursor: pointer;
     position: absolute;
-    left: 50%;
+    left: 370px;
+    top: 12.5%;
+}
+#gas89{
+    padding: 25px 60px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    left: 675px;
     top: 12.5%;
 }
 #autoclicks{
