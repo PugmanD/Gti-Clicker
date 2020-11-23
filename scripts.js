@@ -20,7 +20,7 @@ var fruit7ClckTimes = 0;
 var fruit7 = Math.floor(Math.random() * 90);
 var peachLeechclicks = 0;
 var codeUsed = "false";
-var Game = {version: "V:1.0.1", mode: "Beta"}
+var Game = {version: "V:1.1.1", mode: "Beta"}
 setInterval(save, 10000);
 document.getElementById("fruit1").style.display = "none";
 document.getElementById("fruit2").style.display = "none";
