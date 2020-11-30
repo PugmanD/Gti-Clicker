@@ -6,16 +6,28 @@
     left: 0px;
     position: absolute;
 }
+#water{
+    position: absolute;
+    top: 38px;
+    left: 90%;
+    z-index: 1;
+}
+#cinnamon{
+    position: absolute;
+    top: 38px;
+    left: 70%;
+    z-index: 1;
+}
 #sugar{
     position: absolute;
     top: 30px;
-    left: 27%;
+    left: 50%;
     z-index: 1;
 }
 #yeast{
     position: absolute;
     top: 30px;
-    left: 20%;
+    left: 30%;
     z-index: 1;
 }
 #peachLeechClickCounter{
@@ -24,7 +36,7 @@
 #flour{
     position: absolute;
     top: 30px;
-    left: 7%;
+    left: 10%;
 }
 #bowl{
     cursor: default;
@@ -43,23 +55,19 @@
     top: 19%;
     font-size: 18px;
 }
-#gas87{
+.button{
     padding: 25px 60px;
     background-color: green;
     color: white;
     border: none;
     cursor: pointer;
     position: absolute;
+}
+#gas87{
     left: 370px;
     top: 12.5%;
 }
 #gas89{
-    padding: 25px 60px;
-    background-color: green;
-    color: white;
-    border: none;
-    cursor: pointer;
-    position: absolute;
     left: 675px;
     top: 12.5%;
 }
@@ -152,22 +160,10 @@ img{
     text-align: center;
 }
 #button{
-    padding: 25px 60px;
-    background-color: green;
-    color: white;
-    border: none;
-    cursor: pointer;
-    position: absolute;
     right: 3px;
     top: 20%;
 }
 #music{
-    padding: 25px 60px;
-    background-color: green;
-    color: white;
-    border: none;
-    cursor: pointer;
-    position: absolute;
     right: 215px;
     top: 20%;
 }

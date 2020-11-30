@@ -1,3 +1,4 @@
+//dont forget to make the version (var Game) to show when it is normal.
 var music = 0;
 var idFruit = document.getElementById("fruit");
 var carClicks = 0;
@@ -20,7 +21,9 @@ var fruit7ClckTimes = 0;
 var fruit7 = Math.floor(Math.random() * 90);
 var peachLeechclicks = 0;
 var codeUsed = "false";
-var Game = {version: "V:1.1.1", mode: "Beta"}
+var Game = {version: "V:1.0.2", mode: "Beta"}
+//Remeber to make it respond\\
+var clicksLength = document.getElementById("clicks").length;
 setInterval(save, 10000);
 document.getElementById("fruit1").style.display = "none";
 document.getElementById("fruit2").style.display = "none";
@@ -42,6 +45,8 @@ document.getElementById("flour").style.display = "none";
 document.getElementById("yeast").style.display = "none";
 document.getElementById("peachLeechClickCounter").style.display = "none";
 document.getElementById("sugar").style.display = "none";
+document.getElementById("cinnamon").style.display = "none";
+document.getElementById("water").style.display = "none";
 document.getElementById("version").innerHTML = Game.version + " " + Game.mode;
 document.getElementById("input").addEventListener("keyup", function(e){
     if(e.keyCode == 13){
@@ -132,6 +137,14 @@ function update(){
     carClicks = Math.round(carClicks);
     document.title = "Gti Clicker: " + carClicks + " Clicks";
     document.getElementById("autoclicks").innerHTML = "Autoclicks: " + autoClicks;
+    if(isNaN(carClicks)){
+        window.localStorage.setItem("numberSave", 0);
+        window.localStorage.setItem("autoclicks", 0);
+        window.localStorage.setItem("codeUsed", "false");
+        carClicks = parseInt(window.localStorage.getItem("numberSave"));
+        autoClicks = parseInt(window.localStorage.getItem("autoclicks"));
+        codeUsed = window.localStorage.getItem("codeUsed");
+    }
 }
 function updateAutoClicks(){
     carClicks = carClicks + autoClicks;
@@ -139,12 +152,12 @@ function updateAutoClicks(){
 function sone(){
     tuberClicks = tuberClicks + 1;
     if(tuberClicks == 1){
-        document.getElementById("pot").src = "Images/corn.png";
+        document.getElementById("pot").src = "../Images/corn.png";
         document.getElementById("pot").style.animationDuration = "7.5s";
         carClicks = carClicks + 100;
     }
     if(tuberClicks == 2){
-        document.getElementById("pot").src = "Images/Beats.png";
+        document.getElementById("pot").src = "../Images/Beats.png";
         document.getElementById("pot").style.animationDuration = "5s";
         document.getElementById("pot").style.width = "250px";
         carClicks = carClicks + 125;
@@ -344,6 +357,8 @@ function peachLeechAdd(){
         document.getElementById("flour").style.display = "block";
         document.getElementById("yeast").style.display = "block";
         document.getElementById("sugar").style.display = "block";
+        document.getElementById("cinnamon").style.display = "block";
+        document.getElementById("water").style.display = "block";
         document.getElementById("peachLeechClickCounter").style.display = "none";
     }
     if (peachLeechclicks >= 60){
@@ -359,24 +374,43 @@ function peachLeechAdd(){
 }
 function flourTrigger(){
     document.getElementById("flour").style.display = "none";
-    document.getElementById("bowl").src = "Images/Bowl and flour.png";
+    document.getElementById("bowl").src = "../Images/Bowl and flour.png";
     carClicks = carClicks + 15;
     document.getElementById("yeast").addEventListener("click", function(){
         document.getElementById("yeast").style.display = "none";
-        document.getElementById("bowl").src = "Images/Bowl and yeast.png";
+        document.getElementById("bowl").src = "../Images/Bowl and yeast.png";
         carClicks = carClicks + 15;
         document.getElementById("sugar").addEventListener("click", function(){
             document.getElementById("sugar").style.display = "none";
-            document.getElementById("bowl").src = "";
-            document.getElementById("bowl").alt = "bowl and sugar.png";
+            document.getElementById("bowl").src = "../Images/Bowl and sugar.png";
             carClicks = carClicks + 15;
+            document.getElementById("cinnamon").addEventListener("click", function(){
+                document.getElementById("cinnamon").style.display = "none";
+                document.getElementById("bowl").src = "../Images/Bowl and cinnamon.png";
+                document.getElementById("water").addEventListener("click", function(){
+                    document.getElementById("water").style.display = "none";
+                    document.getElementById("bowl").src = "../Images/Bowl and poof.png";
+                    setTimeout(function(){
+                        startRaisinLoop();
+                        document.getElementById("bowl").style.display = "none";
+                    }, 3000);
+                });
+            });
         });
     });
 }
+function startRaisinLoop(){
+    var raisin = setInterval(function(){
+        raisins();
+    }, 700);
+    setTimeout(function(){
+        clearInterval(raisin);
+        console.log("done");
+    }, 15000);
+}
 function raisins(){
     var raisin = document.createElement("img");
-    raisinForRemove.push(raisin);
-    raisin.setAttribute("src", "Images/raisins.png");
+    raisin.setAttribute("src", "../Images/raisins.png");
     raisin.setAttribute("class", "raisins");
     raisin.setAttribute("draggable", "false");
     raisin.style.zIndex = "1000";
@@ -384,13 +418,15 @@ function raisins(){
     raisin.onclick = function(e){
         e.target.remove();
         carClicks = carClicks + 10;
-        raisinClicks = raisinClicks + 1;
     };
     raisin.style.position = "absolute";
     raisin.style.width = "100px";
     raisin.style.left = Math.floor(Math.random() * 100) + "%";
     raisin.style.top = Math.floor(Math.random() * 90) + "%";
     document.body.appendChild(raisin);
+    setTimeout(function(){
+        raisin.remove();
+    }, 3000);
 }
 setInterval(update, 0);
 setInterval(updatePeachLeechClickCounter, 0);
