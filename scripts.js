@@ -22,8 +22,7 @@ var fruit7 = Math.floor(Math.random() * 90);
 var peachLeechclicks = 0;
 var codeUsed = "false";
 var Game = {version: "V:1.0.2", mode: "Beta"}
-//Remeber to make it respond\\
-var clicksLength = document.getElementById("clicks").length;
+var raisinAmount = false;
 setInterval(save, 10000);
 document.getElementById("fruit1").style.display = "none";
 document.getElementById("fruit2").style.display = "none";
@@ -48,11 +47,23 @@ document.getElementById("sugar").style.display = "none";
 document.getElementById("cinnamon").style.display = "none";
 document.getElementById("water").style.display = "none";
 document.getElementById("version").innerHTML = Game.version + " " + Game.mode;
+document.getElementById("lost").style.display = "none";
+document.getElementById("gas87").style.display = "none";
+document.getElementById("gas89").style.display = "none";
 document.getElementById("input").addEventListener("keyup", function(e){
     if(e.keyCode == 13){
         checkIfCorrrectCode();
     }
 });
+function showBtnHolder(){
+    document.getElementById("btnHolder").classList.add("btn-animate");
+    document.getElementById("btnHolder").style.left = "0px";
+    document.getElementById("btnHolder").addEventListener("mouseout", function(){
+        this.classList.remove("btn-animate")
+        this.classList.add("btn-unanimate");
+        this.style.left = "-200px";
+    });
+}
 function checkIfCorrrectCode(){
     var value = document.getElementById("input").value
     if(value != "raisin"){
@@ -299,7 +310,11 @@ function peachLeech(){
     document.getElementById("footer").style.display = "none";
     document.getElementById("peachLeech").style.display = "block";
     document.getElementById("uhoh").play();
+    document.getElementById("music")
     document.getElementById("body").style.animation = "turnBlack 4s";
+    setTimeout(function(){
+        document.getElementById("getReady").play();
+    }, 7000);
     setTimeout(turnBlack, 4000);
     document.getElementById("peachLeech").style.left = Math.floor(Math.random() *90) + "%";
     document.getElementById("peachLeech").style.top = Math.floor(Math.random() * 90) + "%";
@@ -332,11 +347,16 @@ function endPeachLeech(){
         document.getElementById("body").style.backgroundColor = "white";
     }else{
         document.getElementById("peachLeechClickCounter").style.display = "none";
-        document.getElementById("dust").style.display = "block";
+        dust();
         document.getElementById("peachLeech").style.display = "none";
-        document.getElementById("wind").play();
-        document.getElementById("audio").pause();
     }
+}
+function dust(){
+    document.getElementById("dust").style.display = "block";
+    document.getElementById("wind").play();
+    document.getElementById("audio").pause();
+    document.getElementById("zim").pause();
+    document.getElementById("lost").style.display = "block";
 }
 function turnBlack(){
     document.getElementById("body").style.backgroundColor = "black";
@@ -405,7 +425,13 @@ function startRaisinLoop(){
     }, 700);
     setTimeout(function(){
         clearInterval(raisin);
-        console.log("done");
+        if(raisinAmount == true){
+            //Next Level
+        }else{
+            dust();
+            document.getElementById("dust").style.transition = "all 1s"
+            document.getElementById("dust").style.color = "lightblue";
+        }
     }, 15000);
 }
 function raisins(){
@@ -416,6 +442,7 @@ function raisins(){
     raisin.style.zIndex = "1000";
     raisin.style.position = "absolute";
     raisin.onclick = function(e){
+        raisinAmount = true;
         e.target.remove();
         carClicks = carClicks + 10;
     };

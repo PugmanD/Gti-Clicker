@@ -1,6 +1,28 @@
 ::placeholder{
     color: lightblue;
 }
+.btn-animate{
+    animation: popOut .3s;
+}
+.btn-unanimate{
+    animation: popIn .3s;
+}
+.btn-holder{
+    position: absolute;
+    left: -200px;
+    top: 0px;
+    padding: 100% 100px;
+    background-color: lightgray;
+    z-index: 1;
+}
+.opener{
+    position: absolute;
+    top: 40%;
+    padding: 25px 10px;
+    background-color: lightgray;
+    left: 0;
+    color: darkgray;
+}
 #version{
     top: -13px;
     left: 0px;
@@ -51,9 +73,13 @@
     color: white;
     padding: 25px;
     position: absolute;
-    left: 120px;
+    left: 43%;
     top: 19%;
     font-size: 18px;
+}
+#lost{
+    position: absolute;
+    margin-left: 43%;
 }
 .button{
     padding: 25px 60px;
@@ -158,6 +184,7 @@ img{
 #fruit{
     position: relative;
     text-align: center;
+    top: 50%;
 }
 #button{
     right: 3px;
@@ -231,16 +258,16 @@ img{
     100%{color: tomato; opacity: 0;}
 }
 @keyframes fruit1{
-    0%{left: -100px;
+    0%{left: calc(-10%);
     }
-    50%{left: calc(90%);
+    50%{left: calc(110%);
     transform: rotateZ(360deg);
     }
-    100%{left: -100px;
+    100%{left: calc(-15%);
     transform: rotateZ(-360deg);
     }
 }
-@keyframes turnBlack{
+@keyframes purpToBlack{
     to{background-color: black;}
     from{background-color: #a138d6;}
 }
@@ -251,4 +278,16 @@ img{
 @keyframes turnNormal{
     to{background-color: white;}
     from{background-color: black;}
+}
+@keyframes turnBlack{
+    to{background-color: black;}
+    from{background-color: #a138d6;}
+}
+@keyframes popOut{
+    to{left: 0;}
+    from{left: -200px;}
+}
+@keyframes popIn{
+    to{left: -200px;}
+    from{left: 0;}
 }
