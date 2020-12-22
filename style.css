@@ -1,17 +1,44 @@
 ::placeholder{
     color: lightblue;
 }
+#medal{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+}
 .btn-animate{
     animation: popOut .3s;
+}
+.alert{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 70%;
+    background-color: green;
+    color: white;
+    border-radius: 4px;
+    font-size: 20px;
+    margin-left: 15px;
+    margin-top: 10px;
+    z-index: 1000;
+}
+.x{
+    position: absolute;
+    right: 3px;
+    top: 12px;
+    font-size: 30px;
+    cursor: pointer;
 }
 .btn-unanimate{
     animation: popIn .3s;
 }
 .btn-holder{
     position: absolute;
-    left: -200px;
+    left: -260px;
     top: 0px;
-    padding: 100% 100px;
+    padding: 100% 130px;
     background-color: lightgray;
     z-index: 1;
 }
@@ -90,12 +117,12 @@
     position: absolute;
 }
 #gas87{
-    left: 370px;
-    top: 12.5%;
+    left: 0;
+    top: 100px;
 }
 #gas89{
-    left: 675px;
-    top: 12.5%;
+    left: 0%;
+    top: 0;
 }
 #autoclicks{
     position: absolute;
@@ -285,9 +312,9 @@ img{
 }
 @keyframes popOut{
     to{left: 0;}
-    from{left: -200px;}
+    from{left: -260px;}
 }
 @keyframes popIn{
-    to{left: -200px;}
+    to{left: -260px;}
     from{left: 0;}
 }
