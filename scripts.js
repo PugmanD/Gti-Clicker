@@ -26,6 +26,8 @@ var raisinAmount = false;
 var achievement = {firstClick: "there's a first for everything"};
 var achievementsUnlocked = [];
 var firstClickUsed = false;
+var llamaClicks = 0;
+var onGas87 = false;
 setInterval(save, 10000);
 document.getElementById("fruit1").style.display = "none";
 document.getElementById("fruit2").style.display = "none";
@@ -54,6 +56,8 @@ document.getElementById("lost").style.display = "none";
 document.getElementById("gas87").style.display = "none";
 document.getElementById("gas89").style.display = "none";
 document.getElementById("alert").style.display = "none";
+document.getElementById("llama").style.display = "none";
+document.getElementById("alpaca").style.display = "none";
 document.getElementById("input").addEventListener("keyup", function(e){
     if(e.keyCode == 13){
         checkIfCorrrectCode();
@@ -68,16 +72,24 @@ function showBtnHolder(){
     document.getElementById("btnHolder").classList.add("btn-animate");
     document.getElementById("btnHolder").style.left = "0px";
     document.getElementById("opener").classList.add("opener-animate");
-    document.getElementById("btnHolder").addEventListener("mouseout", function(){
-        this.classList.remove("btn-animate");
-        this.classList.add("btn-unanimate");
-        this.style.left = "-260px";
-        setTimeout(function(){
-            document.getElementById("gas87").style.display = "none";
-            document.getElementById("gas89").style.display = "none";
-            document.getElementById("btnHolder").classList.remove("btn-unanimate");
-        }, 300);
+    document.getElementById("gas87").addEventListener("mouseover", function(){
+        onGas87 = true;
     });
+    document.getElementById("gas87").addEventListener("mouseout", function(){
+        onGas87 = false;
+    });
+    if(onGas87 == false){
+        document.getElementById("btnHolder").addEventListener("mouseout", function(){
+            document.getElementById("btnHolder").classList.remove("btn-animate");
+            document.getElementById("btnHolder").classList.add("btn-unanimate");
+            document.getElementById("btnHolder").style.left = "-260px";
+            setTimeout(function(){
+                document.getElementById("gas87").style.display = "none";
+                document.getElementById("gas89").style.display = "none";
+                document.getElementById("btnHolder").classList.remove("btn-unanimate");
+            }, 300);
+        });
+    }
 }
 function checkIfCorrrectCode(){
     var value = document.getElementById("input").value
@@ -183,12 +195,12 @@ function updateAutoClicks(){
 function sone(){
     tuberClicks = tuberClicks + 1;
     if(tuberClicks == 1){
-        document.getElementById("pot").src = "Images/corn.png";
+        document.getElementById("pot").src = "../Images/corn.png";
         document.getElementById("pot").style.animationDuration = "7.5s";
         carClicks = carClicks + 100;
     }
     if(tuberClicks == 2){
-        document.getElementById("pot").src = "Images/Beats.png";
+        document.getElementById("pot").src = "../Images/Beats.png";
         document.getElementById("pot").style.animationDuration = "5s";
         document.getElementById("pot").style.width = "250px";
         carClicks = carClicks + 125;
@@ -414,22 +426,22 @@ function peachLeechAdd(){
 }
 function flourTrigger(){
     document.getElementById("flour").style.display = "none";
-    document.getElementById("bowl").src = "Images/Bowl and flour.png";
+    document.getElementById("bowl").src = "../Images/Bowl and flour.png";
     carClicks = carClicks + 15;
     document.getElementById("yeast").addEventListener("click", function(){
         document.getElementById("yeast").style.display = "none";
-        document.getElementById("bowl").src = "Images/Bowl and yeast.png";
+        document.getElementById("bowl").src = "../Images/Bowl and yeast.png";
         carClicks = carClicks + 15;
         document.getElementById("sugar").addEventListener("click", function(){
             document.getElementById("sugar").style.display = "none";
-            document.getElementById("bowl").src = "Images/Bowl and sugar.png";
+            document.getElementById("bowl").src = "../Images/Bowl and sugar.png";
             carClicks = carClicks + 15;
             document.getElementById("cinnamon").addEventListener("click", function(){
                 document.getElementById("cinnamon").style.display = "none";
-                document.getElementById("bowl").src = "Images/Bowl and cinnamon.png";
+                document.getElementById("bowl").src = "../Images/Bowl and cinnamon.png";
                 document.getElementById("water").addEventListener("click", function(){
                     document.getElementById("water").style.display = "none";
-                    document.getElementById("bowl").src = "Images/Bowl and poof.png";
+                    document.getElementById("bowl").src = "../Images/Bowl and poof.png";
                     setTimeout(function(){
                         startRaisinLoop();
                         document.getElementById("bowl").style.display = "none";
@@ -446,7 +458,8 @@ function startRaisinLoop(){
     setTimeout(function(){
         clearInterval(raisin);
         if(raisinAmount == true){
-            //Next Level
+            document.getElementById("llama").style.display = "block";
+            document.getElementById("alpaca").style.display = "block";
         }else{
             dust();
             document.getElementById("dust").style.transition = "all 1s"
@@ -456,7 +469,7 @@ function startRaisinLoop(){
 }
 function raisins(){
     var raisin = document.createElement("img");
-    raisin.setAttribute("src", "Images/raisins.png");
+    raisin.setAttribute("src", "../Images/raisins.png");
     raisin.setAttribute("class", "raisins");
     raisin.setAttribute("draggable", "false");
     raisin.style.zIndex = "1000";
@@ -474,6 +487,18 @@ function raisins(){
     setTimeout(function(){
         raisin.remove();
     }, 3000);
+}
+function playNope(){
+    document.getElementById("nope").play();
+}
+function playEnemeySpotted(){
+    document.getElementById("enemy").play();
+}
+function llamaClick(){
+    llamaClicks = llamaClicks + 1;
+}
+function alpacaClick(){
+    llamaClicks = llamaClicks - 1;
 }
 function firstForEverything(){
     if(firstClickUsed == false){
