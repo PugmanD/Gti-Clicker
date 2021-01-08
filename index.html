@@ -53,7 +53,8 @@
             <button class="button" id="gas87" onclick="gas87()">Gas <br><strong>87</strong>(300 Clicks & 1 autoclicks)</button>
             <button class="button" id="gas89" onclick="gas89()">Gas <br><strong>89</strong>(1000 Clicks & 5 autoclicks)</button>
         </div>
-        <div class="opener" id="opener" onmouseover="showBtnHolder()">></div>
+        <div class="opener" id="opener" onclick="showBtnHolder()">&gt;</div>
+        <div class="hider" id="hider" onclick="hideBtnHolder()">&lt;</div>
         <div id="footer">
             <h2 id="clicks">0</h2>
             <h4 id="clicks">POINTS</h4>
@@ -65,7 +66,9 @@
             <span>You unlocked the achievement <strong id="achievement"></strong> see more in the achievment panel</span>
             <span class="x" onclick="hideAlert()">&times;</span>
         </div>
+        <h2 id="llamaText">A llama and an alpaca have come to eat your rolls with raisins... Click the llama not the alpaca!</h2>
         <p id="version"></p>
         <script src="scripts.js"></script>
+        <noscript>Huh, looks like javascript is disabled figure out how to turn it back on</noscript>
     </body>
 </html>

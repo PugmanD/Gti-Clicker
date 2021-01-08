@@ -1,6 +1,9 @@
 ::placeholder{
     color: lightblue;
 }
+#llamaText{
+    text-align: center;
+}
 #llama{
     position: absolute;
 }
@@ -11,9 +14,6 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-}
-.btn-animate{
-    animation: popOut .3s;
 }
 .alert{
     position: absolute;
@@ -37,9 +37,6 @@
     font-size: 30px;
     cursor: pointer;
 }
-.btn-unanimate{
-    animation: popIn .3s;
-}
 .btn-holder{
     position: absolute;
     left: -260px;
@@ -48,6 +45,15 @@
     background-color: lightgray;
     z-index: 10000;
 }
+.hider{
+    position: absolute;
+    top: 40%;
+    padding: 25px 10px;
+    background-color: lightgray;
+    left: 260px;
+    color: darkgray;
+    cursor: pointer;
+}
 .opener{
     position: absolute;
     top: 40%;
@@ -55,6 +61,7 @@
     background-color: lightgray;
     left: 0;
     color: darkgray;
+    cursor: pointer;
 }
 #version{
     top: -13px;
@@ -315,12 +322,4 @@ img{
 @keyframes turnBlack{
     to{background-color: black;}
     from{background-color: #a138d6;}
-}
-@keyframes popOut{
-    to{left: 0;}
-    from{left: -260px;}
-}
-@keyframes popIn{
-    to{left: -260px;}
-    from{left: 0;}
 }

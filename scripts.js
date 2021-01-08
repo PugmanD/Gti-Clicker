@@ -27,7 +27,6 @@ var achievement = {firstClick: "there's a first for everything"};
 var achievementsUnlocked = [];
 var firstClickUsed = false;
 var llamaClicks = 0;
-var onGas87 = false;
 setInterval(save, 10000);
 document.getElementById("fruit1").style.display = "none";
 document.getElementById("fruit2").style.display = "none";
@@ -58,6 +57,8 @@ document.getElementById("gas89").style.display = "none";
 document.getElementById("alert").style.display = "none";
 document.getElementById("llama").style.display = "none";
 document.getElementById("alpaca").style.display = "none";
+document.getElementById("llamaText").style.display = "none";
+document.getElementById("hider").style.display = "none";
 document.getElementById("input").addEventListener("keyup", function(e){
     if(e.keyCode == 13){
         checkIfCorrrectCode();
@@ -67,29 +68,16 @@ function restartGame(){
     reset();
 }
 function showBtnHolder(){
+    document.getElementById("btnHolder").style.left = "0px";
     document.getElementById("gas87").style.display = "block";
     document.getElementById("gas89").style.display = "block";
-    document.getElementById("btnHolder").classList.add("btn-animate");
-    document.getElementById("btnHolder").style.left = "0px";
-    document.getElementById("opener").classList.add("opener-animate");
-    document.getElementById("gas87").addEventListener("mouseover", function(){
-        onGas87 = true;
-    });
-    document.getElementById("gas87").addEventListener("mouseout", function(){
-        onGas87 = false;
-    });
-    if(onGas87 == false){
-        document.getElementById("btnHolder").addEventListener("mouseout", function(){
-            document.getElementById("btnHolder").classList.remove("btn-animate");
-            document.getElementById("btnHolder").classList.add("btn-unanimate");
-            document.getElementById("btnHolder").style.left = "-260px";
-            setTimeout(function(){
-                document.getElementById("gas87").style.display = "none";
-                document.getElementById("gas89").style.display = "none";
-                document.getElementById("btnHolder").classList.remove("btn-unanimate");
-            }, 300);
-        });
-    }
+    document.getElementById("hider").style.display = "block";
+}
+function hideBtnHolder(){
+    document.getElementById("hider").style.display = "none";
+    document.getElementById("gas87").style.display = "none";
+    document.getElementById("gas89").style.display = "none";
+    document.getElementById("btnHolder").style.left = "-260px";
 }
 function checkIfCorrrectCode(){
     var value = document.getElementById("input").value
@@ -460,6 +448,11 @@ function startRaisinLoop(){
         if(raisinAmount == true){
             document.getElementById("llama").style.display = "block";
             document.getElementById("alpaca").style.display = "block";
+            document.getElementById("llamaText").style.display = "block";
+            document.getElementById("llama").style.left = "30%";
+            document.getElementById("alpaca").style.left = "60%";
+            document.getElementById("llama").style.top = "80%";
+            document.getElementById("alpaca").style.top = "79%";
         }else{
             dust();
             document.getElementById("dust").style.transition = "all 1s"
