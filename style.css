@@ -1,6 +1,22 @@
 ::placeholder{
     color: lightblue;
 }
+.loadingText{
+    position: relative;
+    top: 40%;
+    font-size: 55px;
+    font-family: robotoThin;
+}
+.loader{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    text-align: center;
+    left: 0px;
+    top: 0px;
+    z-index: 1000000;
+}
 #llamaText{
     text-align: center;
 }
@@ -14,6 +30,14 @@
     position: absolute;
     bottom: 0;
     left: 50%;
+}
+.twitter{
+    text-decoration: none;
+    position: absolute;
+    top: 3px;
+    left: 47%;
+    color: red;
+    animation: rainbow 10s alternate infinite;
 }
 .alert{
     position: absolute;
@@ -322,4 +346,17 @@ img{
 @keyframes turnBlack{
     to{background-color: black;}
     from{background-color: #a138d6;}
+}
+@keyframes rainbow{
+    0%{color: red;}
+    14%{color: orange;}
+    28%{color: yellow;}
+    42%{color: green;}
+    56%{color: blue;}
+    80%{color: indigo;}
+    100%{color: violet;}
+}
+@font-face{
+    font-family: robotoThin;
+    src: url(Fonts/Roboto/Roboto-Thin.ttf);
 }

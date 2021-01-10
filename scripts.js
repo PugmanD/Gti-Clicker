@@ -58,7 +58,9 @@ document.getElementById("alert").style.display = "none";
 document.getElementById("llama").style.display = "none";
 document.getElementById("alpaca").style.display = "none";
 document.getElementById("llamaText").style.display = "none";
+document.getElementById("llamaClicks").style.display = "none";
 document.getElementById("hider").style.display = "none";
+loading();
 document.getElementById("input").addEventListener("keyup", function(e){
     if(e.keyCode == 13){
         checkIfCorrrectCode();
@@ -66,6 +68,21 @@ document.getElementById("input").addEventListener("keyup", function(e){
 });
 function restartGame(){
     reset();
+}
+function loading(){
+    document.getElementById("loadingText").innerHTML = "Loading";
+    setTimeout(function(){
+        document.getElementById("loadingText").innerHTML = "Loading.";
+        setInterval(function(){
+            document.getElementById("loadingText").innerHTML = "Loading..";
+            setTimeout(function(){
+                document.getElementById("loadingText").innerHTML = "Loading...";
+                setTimeout(function(){
+                    loading();
+                }, 1000);
+            }, 1000);
+        }, 1000);
+    }, 1000);
 }
 function showBtnHolder(){
     document.getElementById("btnHolder").style.left = "0px";
@@ -112,7 +129,7 @@ function load(){
     autoClicks = parseInt(window.localStorage.getItem("autoclicks"));
     codeUsed = window.localStorage.getItem("codeUsed");
     achievementsUnlocked = window.localStorage.getItem("unlockedAchievements");
-    
+    document.getElementById("loader").style.display = "none";
 }
 function playAudio(){
     var audio = document.getElementById("audio");
@@ -166,7 +183,12 @@ function show(){
 function update(){
     document.getElementById("clicks").innerHTML = carClicks;
     carClicks = Math.round(carClicks);
-    document.title = "Gti Clicker: " + carClicks + " Clicks";
+    if(carClicks != 1){
+        document.title = "Gti Clicker: " + carClicks + " Clicks";
+    }
+    if(carClicks == 1){
+        document.title = "Gti Clicker: " + carClicks + " Click";
+    }
     document.getElementById("autoclicks").innerHTML = "Autoclicks: " + autoClicks;
     if(isNaN(carClicks)){
         window.localStorage.setItem("numberSave", 0);
@@ -175,6 +197,9 @@ function update(){
         carClicks = parseInt(window.localStorage.getItem("numberSave"));
         autoClicks = parseInt(window.localStorage.getItem("autoclicks"));
         codeUsed = window.localStorage.getItem("codeUsed");
+    }
+    if(carClicks == 0){
+        document.title = "Gti Clicker";
     }
 }
 function updateAutoClicks(){

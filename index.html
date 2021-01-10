@@ -4,7 +4,6 @@
         <link id="icon" rel="icon" href="Images/SnapShotGamesLogoInDay.png">
         <link rel="stylesheet" href="style.css">
         <meta name="veiwport" content="width=device-width, initial-scale=1.0">
-        <meta property="og:description" content="Clicker game that I decided to make because I had to do somthing so yeah check it out.">
     </head>
     <body id="body" onload="load()">
         <img src="Images/Golf Gti.png" width="400" onclick="add()" id="image" draggable="false">
@@ -43,13 +42,16 @@
         <!--Misc.-->
         <span id="span" onclick="show()">Show Autoclicks</span>
         <h2 id="autoclicks">Autoclicks: 0</h2>
-        <div class="loader"></div>
         <div class="center">
             <h1 id="dust">Were All Just Dust In The Wind, Dude.</h1>
             <button id="lost" class="button" onclick="restartGame()">Restart Game</button>
             <h1 id="peachLeechClickCounter">0</h1>
             <h2 id="fruit"></h2>
         </div>
+        <div id="loader" class="loader">
+            <h1 class="loadingText" id="loadingText">Loading</h1>
+        </div>
+        <a href="https://twitter.com/ClickerGti" target="_blank" class="twitter">@ClickerGti</a>
         <div class="btn-holder" id="btnHolder">
             <button class="button" id="gas87" onclick="gas87()">Gas <br><strong>87</strong>(300 Clicks & 1 autoclicks)</button>
             <button class="button" id="gas89" onclick="gas89()">Gas <br><strong>89</strong>(1000 Clicks & 5 autoclicks)</button>
@@ -68,6 +70,7 @@
             <span class="x" onclick="hideAlert()">&times;</span>
         </div>
         <h2 id="llamaText">A llama and an alpaca have come to eat your rolls with raisins... Click the llama not the alpaca!</h2>
+        <h4 id="llamaClicks">Llama Clicks: 0</h4>
         <p id="version"></p>
         <script src="scripts.js"></script>
         <noscript>Huh, looks like javascript is disabled figure out how to turn it back on</noscript>
