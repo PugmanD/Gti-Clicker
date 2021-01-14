@@ -60,7 +60,6 @@ document.getElementById("alpaca").style.display = "none";
 document.getElementById("llamaText").style.display = "none";
 document.getElementById("llamaClicks").style.display = "none";
 document.getElementById("hider").style.display = "none";
-loading();
 document.getElementById("input").addEventListener("keyup", function(e){
     if(e.keyCode == 13){
         checkIfCorrrectCode();
@@ -68,21 +67,6 @@ document.getElementById("input").addEventListener("keyup", function(e){
 });
 function restartGame(){
     reset();
-}
-function loading(){
-    document.getElementById("loadingText").innerHTML = "Loading";
-    setTimeout(function(){
-        document.getElementById("loadingText").innerHTML = "Loading.";
-        setInterval(function(){
-            document.getElementById("loadingText").innerHTML = "Loading..";
-            setTimeout(function(){
-                document.getElementById("loadingText").innerHTML = "Loading...";
-                setTimeout(function(){
-                    loading();
-                }, 1000);
-            }, 1000);
-        }, 1000);
-    }, 1000);
 }
 function showBtnHolder(){
     document.getElementById("btnHolder").style.left = "0px";
@@ -183,12 +167,7 @@ function show(){
 function update(){
     document.getElementById("clicks").innerHTML = carClicks;
     carClicks = Math.round(carClicks);
-    if(carClicks != 1){
-        document.title = "Gti Clicker: " + carClicks + " Clicks";
-    }
-    if(carClicks == 1){
-        document.title = "Gti Clicker: " + carClicks + " Click";
-    }
+    document.title = "Gti Clicker: " + carClicks + " Clicks";
     document.getElementById("autoclicks").innerHTML = "Autoclicks: " + autoClicks;
     if(isNaN(carClicks)){
         window.localStorage.setItem("numberSave", 0);
@@ -208,12 +187,12 @@ function updateAutoClicks(){
 function sone(){
     tuberClicks = tuberClicks + 1;
     if(tuberClicks == 1){
-        document.getElementById("pot").src = "Images/corn.png";
+        document.getElementById("pot").src = "../Images/corn.png";
         document.getElementById("pot").style.animationDuration = "7.5s";
         carClicks = carClicks + 100;
     }
     if(tuberClicks == 2){
-        document.getElementById("pot").src = "Images/Beats.png";
+        document.getElementById("pot").src = "../Images/Beats.png";
         document.getElementById("pot").style.animationDuration = "5s";
         document.getElementById("pot").style.width = "250px";
         carClicks = carClicks + 125;
@@ -439,22 +418,22 @@ function peachLeechAdd(){
 }
 function flourTrigger(){
     document.getElementById("flour").style.display = "none";
-    document.getElementById("bowl").src = "Images/Bowl and flour.png";
+    document.getElementById("bowl").src = "../Images/Bowl and flour.png";
     carClicks = carClicks + 15;
     document.getElementById("yeast").addEventListener("click", function(){
         document.getElementById("yeast").style.display = "none";
-        document.getElementById("bowl").src = "Images/Bowl and yeast.png";
+        document.getElementById("bowl").src = "../Images/Bowl and yeast.png";
         carClicks = carClicks + 15;
         document.getElementById("sugar").addEventListener("click", function(){
             document.getElementById("sugar").style.display = "none";
-            document.getElementById("bowl").src = "Images/Bowl and sugar.png";
+            document.getElementById("bowl").src = "../Images/Bowl and sugar.png";
             carClicks = carClicks + 15;
             document.getElementById("cinnamon").addEventListener("click", function(){
                 document.getElementById("cinnamon").style.display = "none";
-                document.getElementById("bowl").src = "Images/Bowl and cinnamon.png";
+                document.getElementById("bowl").src = "../Images/Bowl and cinnamon.png";
                 document.getElementById("water").addEventListener("click", function(){
                     document.getElementById("water").style.display = "none";
-                    document.getElementById("bowl").src = "Images/Bowl and poof.png";
+                    document.getElementById("bowl").src = "../Images/Bowl and poof.png";
                     setTimeout(function(){
                         startRaisinLoop();
                         document.getElementById("bowl").style.display = "none";
@@ -487,7 +466,7 @@ function startRaisinLoop(){
 }
 function raisins(){
     var raisin = document.createElement("img");
-    raisin.setAttribute("src", "Images/raisins.png");
+    raisin.setAttribute("src", "../Images/raisins.png");
     raisin.setAttribute("class", "raisins");
     raisin.setAttribute("draggable", "false");
     raisin.style.zIndex = "1000";
